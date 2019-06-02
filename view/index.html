@@ -14,13 +14,21 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../static/css/index.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-
+    <script type="text/javascript">
+        $(document).ready(function(){
+           $(".test1").load("topheader.html")
+          /* id 지정을 통해서도 가능합니다. 
+           $("#header").load("header.html #navbar")
+           */       
+        });
+  </script>    
 </head>
 <body>
     <script type="text/javascript" src="../static/script/index.js"></script>
    
     <div class="test1">
-        test 1
+
+        
     </div>
     <div class="test2">
         <div class="half1" id="canvars" onclick="testjs(id)">

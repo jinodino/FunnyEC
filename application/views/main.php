@@ -15,16 +15,11 @@
     <link rel="stylesheet" type="text/css" href="../../public/css/index.css">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script type="text/javascript">
-        // $(document).ready(function(){
-        //    $(".slide").load("topheader.html")
-        //   /* id 지정을 통해서도 가능합니다. 
-        //    $("#header").load("header.html #navbar")
-        //    */       
-        // });
   </script>   
 </head>
 <body>
     <script type="text/javascript" src="../../public/script/index.js"></script>
+    <header>asd</header>
     <div class="slide">
         <ul>
         <li></li>

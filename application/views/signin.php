@@ -7,8 +7,42 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='../../public/css/signIO/signIOlayout.css'>
     <link rel='stylesheet' type='text/css' media='screen' href='../../public/css/signIO/signIOanimation.css'>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src='main.js'></script>
 </head>
+<script>
+    $( document ).ready( function() {
+        // code ...
+        $('#submitButton').on('click', function () {
+
+            var customerId = $('#customerId').val();
+            var customerPassword = $('#customerPassword').val();
+
+            // ajax --start
+            $.ajax({
+                url : '/login'
+            
+                , type : 'post'
+                , data : {
+                    customerId : customerId,
+                    customerPassword : customerPassword
+                }
+                , datetype : 'JSON'
+                , success : function(res){
+                    console.log(res)    
+                    if(res == "0") {
+                        alert("nono");
+                    }else {
+                        location.href = "/product";
+                    }
+                }
+                , error : function(){
+                    alert('Error');
+                }
+            });
+        })
+    });
+</script>
 <body>
     <script type="text/javascript" src="../public/script/signIO/signin.js"></script>
     <center>
@@ -22,7 +56,7 @@
                         </header>
                         
                         <main class="signup-form-body">
-                            <form action="#" id="signup-form">
+                            <div id="signup-form">
                                 <p>
                                 <label for="fullname">Your Id</label>
                                 <input type="text" id="customerId" name="customerId" placeholder="入力してください" required />
@@ -34,9 +68,9 @@
                                 </p>
                                 
                                 <p>
-                                <input type="submit" name="submit" value="Sing In"/>
+                                <input id="submitButton" type="submit"/ value="Sign In">
                                 </p>
-                            </form>
+                            </div>
                         </main>
                         
                         <footer class="signup-form-footer">

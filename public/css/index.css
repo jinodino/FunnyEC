@@ -3,6 +3,7 @@ body {
     width: 800px;
     margin: 0 auto;
 }
+
 ul,li{list-style:none; margin: 0;}
     .slide{height:100px;overflow:hidden;position: relative;}
     .slide ul{width:calc(100% * 4);display:flex;animation:slide 8s infinite;} /* slide를 8초동안 진행하며 무한반복 함 */

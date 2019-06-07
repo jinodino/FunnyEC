@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-		
+class LoginController extends CI_Controller {
+
 	/**
 	 * Index Page for this controller.
 	 *
@@ -17,19 +17,35 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function gogo() {
+		$this->load->view('product/product_main');
+	}
+	public function login()
 	{
-		$this->load->view('main');
-	}
-
-	public function signin() {
-		$this->load->view('signin');
-	}
-
-	public function dbtest() {
 		$this->load->model('RegistrationModel');
-		$this->RegistrationModel->login();
+		
+	
+        $id = $_POST['customerId'];
+        $pw = $_POST['customerPassword'];
+		
+
+		//$test = array('id' => $_SESSION['id'], 'pw' => $_SESSION['password']);
+
+
+		$result_data = $this->RegistrationModel->login($id, $pw);
+
+
+		if(!$result_data) { echo 0; }
+		else { 
+			$_SESSION['id'] = $id;
+			$_SESSION['password'] = $pw;
+			
+			echo 1;
+			
+		 } 
+	
 	}
+
 }
 
 /* End of file welcome.php */

@@ -5,13 +5,15 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Sign in</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../../public/static/css/signIO/signIOanimation.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='../../public/static/css/signIO/signIOlayout.css'>
-    <script src='main.js'></script>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../public/css/signIO/signIOlayout.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../public/css/signIO/signIOanimation.css'>
 </head>
+<script>
+    
+</script>
 <body>
     <center>
-        <div class="jello-vertical">
+        <div class="jello-vertical-signup">
                 <div class="site-wrapper">
                     <div class="signup-form-container">
                         
@@ -25,17 +27,27 @@
                         <form action="#" id="signup-form">
                             <p>
                             <label for="fullname">Your Name</label>
-                            <input type="text" id="fullname" name="fullname" placeholder="Srithan Savela" required />
+                            <input type="text"  id="fullname" name="fullname" placeholder="Srithan Savela" required /> 
+                            </p>
+
+                            <p>
+                            <label for="password">Your New Password</label>
+                            <input type="password" id="password" name="password" placeholder="at least 8 characters" minlength="8" required/>
                             </p>
                             
                             <p>
                             <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" placeholder="iamsrithan@gmail.com" required />
+                            <input type="email" id="email" name="email" placeholder="iamsrithan@gmail.com" required /> 
                             </p>
-                            
+
                             <p>
-                            <label for="password">Your New Password</label>
-                            <input type="password" id="password" name="password" placeholder="at least 8 characters" minlength="8" required/>
+                            <label for="phoneNumber">Your PhoneNumber</label>
+                            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="XXX-XXXX-...." pattern="[0-9]-[0-9]-[0-9]"required /> 
+                            </p>
+
+                            <p>
+                            <label for="address">Your Address</label>
+                            <input type="tel" id="address" name="address" placeholder="" required /> 
                             </p>
                             
                             <p>
@@ -55,4 +67,3 @@
         </div>
     </center>
 </body>
-</html>

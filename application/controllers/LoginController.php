@@ -37,6 +37,7 @@ class LoginController extends CI_Controller {
 
 		if(!$result_data) { echo 0; }
 		else { 
+			session_start();
 			$_SESSION['id'] = $id;
 			$_SESSION['password'] = $pw;
 			

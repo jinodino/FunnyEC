@@ -46,5 +46,8 @@ $route['404_override'] = '';
 $route['login'] = 'LoginController/login';
 $route['product'] = 'LoginController/gogo';
 
+// test route
+$route['test'] = 'LoginController/test';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

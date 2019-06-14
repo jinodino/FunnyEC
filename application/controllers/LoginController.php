@@ -20,6 +20,7 @@ class LoginController extends CI_Controller {
 	public function gogo() {
 		$this->load->view('product/product_main');
 	}
+	
 	public function login()
 	{
 		$this->load->model('RegistrationModel');
@@ -37,14 +38,24 @@ class LoginController extends CI_Controller {
 
 		if(!$result_data) { echo 0; }
 		else { 
-			session_start();
-			$_SESSION['id'] = $id;
-			$_SESSION['password'] = $pw;
+			// session_start();
+			// $_SESSION['id'] = $id;
+			// $_SESSION['password'] = $pw;
+			$sessionData = array( 
+				'id' => $id,
+				'password' => $pw
+			);
 			
+			$this->session->set_userdata($sessionData);
+
 			echo 1;
 			
 		 } 
 	
+	}
+
+	function test() {
+		$this->load->view('test');
 	}
 
 }

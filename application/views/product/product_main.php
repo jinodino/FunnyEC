@@ -1,8 +1,3 @@
-<?php
-    session_cache_expire(360); 
-    session_start();
-   
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,6 +17,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <!-- modal 관련 link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <style>
     /* header CSS */
@@ -60,6 +60,7 @@
         color: #7575757c;
         font-size: 11px;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .header_right_register a:hover {
@@ -297,6 +298,9 @@
 
     .product_top_second {
         height: 36%;
+        padding: 0 10px 20px 10px;
+        font-family: Trade_Gothic;
+        font-size: 24px;
     }
 
     .product_top_third {
@@ -365,16 +369,94 @@
 
 
     .footer {
-        /* background: chocolate; */
         border-top: 1px solid #cfcfcf;
         height: 80px;
         width: 100%;
         clear: both;
     }
 
+    /* modal css */
+    .modal-content {
+        width: 480px;
+        height: 435px;
+        margin: 180px auto;
+    }
+    
+    .modal-header {
+        text-align: center;
+        border-bottom: none;
+    }
+
+    .close {
+        color: black;
+        opacity: .9;
+    }
+
+    .login_logo {
+        background-image: url(../../../public/picture/logo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        margin: 25px auto;
+        height: 79px;
+    }
+    
+    .modal-title {
+        font-weight: 600;
+        font-size: 25px;
+    }
+
+    .modal-body {
+        align: center;
+        margin: auto 50px;
+    }
+    
+
+    .form-control {
+        width: 100%;
+    }
+
+
+    .form-control:focus {
+        border-width:1px;
+        border-color:#000000;
+    }
+
+    .findpassword {
+        text-align: right;
+        cursor: pointer;
+    }
+
+    .findpassword p{
+        color: #7575757c;
+        margin: 0;
+    }
+
+    .findpassword p:hover{
+        color: #414040a2;
+    }
+
+    .modal-footer  {
+        text-align: center;
+        border-top: none;
+        margin: auto 50px;
+    }
+
+
+    #loginbutton {
+        background: black;
+        width: 100%; 
+        height: 35px;
+        border: 0;
+        outline: 0;
+        color: white;
+        cursor: pointer;
+    }
+
+
 </style>
 <script>
-    $(document).ready(function(){ //DOM이 준비되고
+    $(document).ready(function(){ 
         // toggle flag 
         var toggleFlag = true;
         $('.testbutton').click(function() {
@@ -393,12 +475,60 @@
                 
             });
         });
+
+        $('#loginbutton').click(function() {
+            var customerId = $('#loginId').val();
+            var customerPassword = $('#loginPassword').val();
+
+            // ajax --start
+            $.ajax({
+                url : '/login'
+
+                , type : 'post'
+                , data : {
+                    customerId : customerId,
+                    customerPassword : customerPassword
+                }
+                , datetype : 'JSON'
+                , success : function(res){
+                      
+                    if(res == "0") {
+                        alert("nono");
+                    }else { 
+                        $('#myModal').modal('hide');
+                        $('.header_right_register').append("<a id='singout' onclick='logout()'>SING OUT</a>");           
+                        $('.product_menu').text(<?php echo @$this->session->userdata['id'];?>)
+                        
+                        $('#signin').remove();
+                    }
+                }   
+                , error : function(){
+                    alert('Error');
+                }
+            });
+        });
+        
+
+        // $('#singout').click(function() {
+        //     alert(22);
+        //     // window.location.reload("/product");
+        // })
     });
+
+    function logout() {
+        <?php 
+            $this->session->sess_destroy();
+        ?>
+        window.location.reload('/product')
+    }
+    
 
     function a(id) {
         
         var productName = $('#' + id).attr('value');
+
         $('#product_a_name').text("/ " + productName);
+        $('#product_top_second_kind').text(productName + "'s シューズ");
         
     }
 </script>
@@ -408,7 +538,14 @@
         <div class="header_left"></div>
         <div class="header_right">
             <div class="header_right_register">
-                <a href="#">SING IN</a>
+                <?php 
+                    if(!isset($this->session->userdata['id'])) {
+                        echo "<a id='signin' data-toggle='modal' href='#myModal'>SING IN</a>";
+                    }else {
+                        echo "<a id='signout' onclick='logout()'>SING OUT</a>";
+                    }
+                ?>
+               <!-- <a id='signin' data-toggle="modal" href="#myModal">SING IN</a> -->
             </div>
             <div class="header_right_callcenter">
                 <a href="#">QUESTION</a>
@@ -421,6 +558,38 @@
             </div>
         </div>
     </header>
+
+    <!-- login modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="login_logo"></div>
+                    <span class="modal-title">SONSATIONAL LOGIN</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal_body_login">
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p>
+                    </div>
+                    <div class="modal_body_password">
+                         <p>
+                            <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                        </p>
+                    </div>
+                    <div class="findpassword">
+                        <p>パスワードを忘れた場合...</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="loginbutton">LOGIN</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- menual -->
     <div class="menual">
@@ -449,7 +618,9 @@
                     <a href="#">SONSATIONAL</a>
                     <a href="#" id="product_a_name"></a>
                 </div>
-                <div class="product_top_second"></div>
+                <div class="product_top_second">
+                    <span id="product_top_second_kind"></span>
+                </div>
                 <div class="product_top_third"></div>
             </div>
             <div class="product_top_control">
@@ -461,12 +632,19 @@
                     <span class="testbutton"><i class="fa fa-search"></i></span>
                     </span><i class="fa fa-shopping-cart fa-lg"></i></span>
                 </div>
-                
             </div>
         </div>
         <div class="artical">
                 <div class="product_menu">
-                    <div></div>
+                <?php if(@!isset($this->session->userdata['id'])) {
+                        echo "session none";
+                    } else {
+                        echo @$this->session->userdata['id'];
+                    }
+                    ?>
+                    <div>
+                        
+                    </div>
                     <div></div>
                 </div>
                 <div class="product_view">

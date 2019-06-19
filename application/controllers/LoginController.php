@@ -17,10 +17,13 @@ class LoginController extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	// test main page
 	public function gogo() {
 		$this->load->view('product/product_main');
 	}
 	
+	// login
 	public function login()
 	{
 		$this->load->model('RegistrationModel');
@@ -32,28 +35,31 @@ class LoginController extends CI_Controller {
 
 		//$test = array('id' => $_SESSION['id'], 'pw' => $_SESSION['password']);
 
-
 		$result_data = $this->RegistrationModel->login($id, $pw);
 
 
 		if(!$result_data) { echo 0; }
 		else { 
-			// session_start();
-			// $_SESSION['id'] = $id;
-			// $_SESSION['password'] = $pw;
+			$_SESSION['id'] = $id;
+			$_SESSION['password'] = $pw;
 			$sessionData = array( 
 				'id' => $id,
 				'password' => $pw
 			);
-			
-			$this->session->set_userdata($sessionData);
 
-			echo 1;
+			echo json_encode($sessionData);
 			
-		 } 
+		}
 	
 	}
 
+	// logout
+	function logout() {
+		session_start();
+		session_destroy();
+	}
+
+	// test function
 	function test() {
 		$this->load->view('test');
 	}

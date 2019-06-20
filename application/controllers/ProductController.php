@@ -6,9 +6,14 @@ class ProductController extends CI_Controller {
 	public function view() {
         
         $this->load->model('ProductModel');
-        $result_data = $this->ProductModel->productView();
 
-        echo json_encode($result_data);
+        $productType = $_POST['productType'];
+        $productView = $this->ProductModel->productView($productType);
+        $productMenu = $this->ProductModel->productMenu($productType);
+
+        $result = array('view' => $productView, 'menu' => $productMenu);
+
+        echo json_encode($result);
     
     }
 

@@ -97,7 +97,6 @@ function logout() {
 function selectMenual(id) {
     
     var productName = $('#' + id).attr('value');
- 
 
     $(".product_top").load("../../application/views/public/product_top_test.php");
     $(".product_top").height('130px');
@@ -106,36 +105,49 @@ function selectMenual(id) {
     $.ajax({
         url : '/productload'
 
-        , type : 'get'
+        , type : 'post'
+        // , type : 'get'
         , data : {
-            
+            productType: productName,
         }
         , datetype : 'JSON'
         , success : function(res){
-            
+            // alert(res)
             $('#product_a_name').text("/ " + productName);
             $('#product_top_second_kind').text(productName + "'s シューズ");
             $('.product_menu').width('10%');
             $('.product_view').width('86%');
-            var ss = JSON.parse(res);
 
-
+            var parsingData = JSON.parse(res);
+            
             var productElement = "";
-        
-            ss.forEach(element => {
+            var productMenu    = '<div>전체보기</div>';
+
+            parsingData.menu.forEach(function (item) {
+                productMenu   += '<div>' + item.name + '</div>';
+            });
+            
+            
+            parsingData.view.forEach(function (item) {
                 productElement += '<div class="product_view_container">';
-                productElement += '    <div class="product_view_container_piture" onclick=productInfoPageGo(' + element.num + ')>';
-                productElement += '        <img src="' + element.src + '" alt="default"></img>';
+                productElement += '    <div class="product_view_container_piture" onclick=productInfoPageGo(' + item.code + ')>';
+                productElement += '        <img src="' + item.src + '" alt="default"></img>';
                 productElement += '    </div>';
                 productElement += '    <div class="product_view_container_display">';
                 productElement += '        <div class="product_info">';
-                productElement += '            <span>' + element.title + '</span>';
+                productElement += '            <span>' + item.name + '</span>';
                 productElement += '        </div>';
-                productElement += '    <div class="product_price"> ' + element.price + '</div>';
+                productElement += '    <div class="product_price"> ' + item.price + '</div>';
                 productElement += '    </div>';
                 productElement += '</div>';
             });
+
+            // main page
+            $('.product_menu').html(productMenu);
             $('.product_view').html(productElement);
+
+            // sub page
+            $('.product_info_menu').html(productMenu);
             $('.productinfo_view').html(productElement);
         }   
         , error : function(){

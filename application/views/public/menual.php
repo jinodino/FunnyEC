@@ -5,7 +5,7 @@
             <li class="menual_menu_casual" id="casul" onclick=selectMenual(id) value="Casul">CASUL</li>
             <li class="menual_menu_sport" id="sport" onclick=selectMenual(id) value="Sport">SPORT</li>
             <li class="menual_menu_baby" id="baby" onclick=selectMenual(id) value="Baby">BABY</li>
-            <li class="menual_menu_business" id="business" onclick=selectMenual(id) value="Buniess">BUSINESS</li>
+            <li class="menual_menu_business" id="business" onclick=selectMenual(id) value="Business">BUSINESS</li>
         </ul>
     </div>
     <div class="menual_search">

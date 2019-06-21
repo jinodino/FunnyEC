@@ -58,8 +58,11 @@ $route['logout']  = 'LoginController/logout';
 $route['product'] = 'LoginController/gogo';
 
 // 
-$route['productload'] = 'ProductController/view';
-$route['productInfo'] = 'ProductController/productInfo';
+$route['productload']    = 'ProductController/view';
+$route['productInfo']    = 'ProductController/productInfo';
+$route['selectCategory'] = 'ProductController/categoryView';
 
+// page routing
+$route['cartPageGo']     = 'PageController/cart';
 // test route
 $route['test'] = 'LoginController/test';

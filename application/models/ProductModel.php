@@ -31,6 +31,8 @@ class ProductModel extends CI_model {
         return $result;
     }
 
+    
+
     public function productMenu($productType) {
 
         try {
@@ -51,7 +53,75 @@ class ProductModel extends CI_model {
         }
         
         return $result;
-            
+    }
+
+    public function productCategoryView($categoryType) 
+    {
+
+        try {
+            $sql = "SELECT num FROM sub_category WHERE name = '$categoryType'";
+
+            $subCategoryNum = $this->db->query($sql)->result();
+
+            $sql = "SELECT * FROM product WHERE sub_category = " . $subCategoryNum[0]->num;
+
+            $result = $this->db->query($sql)->result();
+
+            if(!$result) return 0;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return $result;
+    }
+
+
+    // info page
+    # info, size, category
+    public function productInfoView($productCode)
+    {
+        
+        try {
+            $sql  = "SELECT p.*, mc.name AS mname, sc.name AS sname ";
+            $sql .= "FROM ec.product AS p ";
+            $sql .= "JOIN ec.main_category AS mc "; 
+            $sql .= "ON p.main_category = mc.num ";
+            $sql .= "JOIN ec.sub_category AS sc ";
+            $sql .= "ON p.sub_category = sc.num ";
+            $sql .= "WHERE p.code = $productCode";
+
+            $result = $this->db->query($sql)->result();
+
+
+            // $sql = "SELECT * FROM sub_category WHERE sub_category = " . $subCategoryNum[0]->num;
+
+            // $result = $this->db->query($sql)->result();
+
+            if(!$result) return 0;
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+
+        return $result;
+    }
+
+    public function productSizeView($productCode)
+    {
+        try {
+
+           $sql = "SELECT size FROM ec.product_size WHERE product_code = $productCode";
+
+           $result = $this->db->query($sql)->result();
+
+           if(!$result) return 0; 
+
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        return $result;
 
     }
 }

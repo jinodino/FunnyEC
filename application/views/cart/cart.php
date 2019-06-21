@@ -28,6 +28,7 @@
 
     <!-- css link -->
     <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
+    <link rel="stylesheet" type="text/css" href="../../../public/css/cart.css">
 </head>
 <body>
     <!-- javacscipt include -->
@@ -46,19 +47,39 @@
         <?php include_once  APPPATH ."views/public/product_top.php"; ?>
 
         <div class="artical">
-            <!-- product_menu -->
             <?php include_once  APPPATH ."views/public/product_menu.php"; ?>
-            
+
             <div class="product_view">
-                <div class="mainpageImg">
-                    <div class="mainpageImg_left">
-                        <img src="../../../public/picture/mainpage.png" alt="">
+                <div class="cart-container">
+                    <div class="cart-title">会員登録</div>
+                    <div class="cart-form">
+                        <!-- id pw name phone email address -->
+                        <!-- id = email -->
+                        <p class="cart-form-box">
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p>  
+                        <!-- pw -->
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p> 
+                        <!-- pw re -->
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p> 
+                        <!-- name -->
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p> 
+                        <!-- email -->
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p> 
+                        <!-- phone -->
+                        <p>
+                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
+                        </p> 
                     </div>
-                    <div class="mainpageImg_right">
-                        <img src="../../../public/picture/mainpage2.jpg" alt="">
-                        <img src="../../../public/picture/mainpage3.jpg" alt="">
-                    </div> 
-                </div>                
+                </div>
             </div>
         </div>
     </main>
@@ -67,3 +88,8 @@
     <?php include_once  APPPATH ."views/public/footer.php"; ?>
 </body>
 </html>
+
+<!-- product_menu -->
+
+            
+            

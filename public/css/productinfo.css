@@ -8,6 +8,27 @@
     float: left;
     width: 10%;
     padding: 15px 0 0 15px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.menu-total {
+    padding: 0 0 10px 15px;
+    cursor: pointer;
+}
+
+.menu-total:hover {
+    color: #adadad;
+}
+
+
+.menu-sub {
+    padding: 0 0 10px 35px;
+    cursor: pointer;
+}
+
+.menu-sub:hover {
+    color: #adadad;
 }
 
 .productinfo_view {

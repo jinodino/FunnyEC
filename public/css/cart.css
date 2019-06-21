@@ -1,0 +1,19 @@
+.cart-container {
+    /* background-color: blue; */
+    margin: 0 40%;
+    text-align: center;
+}
+
+.cart-title {
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0 0 40px 0;
+}
+
+.cart-form {
+    width: 100%;
+}
+
+.cart-form-box {
+    margin-bottom: 15px;
+}

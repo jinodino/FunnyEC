@@ -1,24 +1,5 @@
 
 $(document).ready(function(){ 
-    
-    // toggle flag 
-    // var toggleFlag = true;
-    // $('.testbutton').click(function() {
-    //     alert(1)
-    //     // toggle flase width change 
-    //     if ( toggleFlag == false) {  
-    //         $('.product_view').width('86%'); 
-    //     }
-    //     $('.product_menu').toggle(300, function () {
-    //         // toggle true width change 
-    //         if ( toggleFlag == true) {
-    //             toggleFlag = false;
-    //             $('.product_view').width('100%'); 
-    //         } else {
-    //             toggleFlag = true;
-    //         }
-    //     });
-    // });
 
     $('#loginbutton').click(function() {
         var customerId = $('#loginId').val();
@@ -117,14 +98,15 @@ function selectMenual(id) {
             $('#product_top_second_kind').text(productName + "'s シューズ");
             $('.product_menu').width('10%');
             $('.product_view').width('86%');
+          
 
             var parsingData = JSON.parse(res);
             
             var productElement = "";
-            var productMenu    = '<div>전체보기</div>';
+            var productMenu    = '<div class="menu-total" id=' + productName + ' onclick=selectCategory(id)>' + productName + '</div>';
 
             parsingData.menu.forEach(function (item) {
-                productMenu   += '<div>' + item.name + '</div>';
+                productMenu   += '<div class="menu-sub" id=' +item.name + ' onclick=selectCategory(id)>' + item.name + '</div>';
             });
             
             
@@ -154,14 +136,73 @@ function selectMenual(id) {
             alert('Error');
         }
     });
-
 }
 
+
+function selectCategory(id) {
+    
+    var selectId = id;
+    
+    $.ajax({
+        url : '/selectCategory'
+
+        , type : 'post'
+        // , type : 'get'
+        , data : {
+            categoryType : selectId,
+        }
+        , datetype : 'JSON'
+        , success : function(res){
+            
+            $( ".product_menu > div" ).css( "font-weight", 500 );
+            $( ".product_info_menu > div" ).css( "font-weight", 500 );
+            $('#' + id).css('font-weight', 'bold');
+          
+            var parsingData = JSON.parse(res);
+            
+            var productElement = "";
+            
+            parsingData.forEach(function (item) {
+                productElement += '<div class="product_view_container">';
+                productElement += '    <div class="product_view_container_piture" onclick=productInfoPageGo(' + item.code + ')>';
+                productElement += '        <img src="' + item.src + '" alt="default"></img>';
+                productElement += '    </div>';
+                productElement += '    <div class="product_view_container_display">';
+                productElement += '        <div class="product_info">';
+                productElement += '            <span>' + item.name + '</span>';
+                productElement += '        </div>';
+                productElement += '    <div class="product_price"> ' + item.price + '</div>';
+                productElement += '    </div>';
+                productElement += '</div>';
+            });
+
+            // main page
+            $('.product_view').html(productElement);
+
+
+            // sub page
+            $('.productinfo_view').html(productElement);
+
+        }   
+        , error : function(){
+            alert('Error');
+        }
+    });
+}
+
+
+// 상품 상세 페이지 이동
 function productInfoPageGo(num) {
     var infoPage = num;
-    location.href = "/productInfo?productNum=" + infoPage;
+    location.href = "/productInfo?productCode=" + infoPage;
 }
 
+// 카트 페이지 이동
+function cartPageGo() {
+    location.href = "/cartPageGo";
+}
+
+// 토글 
 var toggleFlag = true;
 function toggle() {
     //toggle flag 
@@ -194,3 +235,5 @@ function toggle() {
         }
     });
 }
+
+

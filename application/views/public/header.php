@@ -17,7 +17,7 @@
         <div class="header_right_callcenter">
             <a href="#">QUESTION</a>
         </div>
-        <div class="header_right_cart">
+        <div class="header_right_cart" onclick=cartPageGo()>
             <i class="fa fa-shopping-cart fa-lg"></i>
         </div>
         <div class="header_right_country">

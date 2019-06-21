@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
     <link rel="stylesheet" type="text/css" href="../../../public/css/productinfo.css">
 </head>
+
 <body>
     <!-- javacscipt include -->
     <script type="text/javascript" src="../../../public/script/product.js"></script>
@@ -55,7 +56,7 @@
                     <div class="productinfo_view_container_picture">
                         <div class="productinfo_view_container_picture1">
                             <div class="productinfo_view_container_picture_img">
-                                <img src="../../../public/picture/airmax97_BL.jpg" alt="">
+                                <?php echo '<img src="' . $info[0]->src . '" alt="">'; ?>
                             </div>
                             <div class="productinfo_view_container_picture_subimg">
                                 서브 사진 
@@ -64,26 +65,27 @@
                     </div>
                     <!-- 소개 -->
                     <div class="product_viewinfo_container_info">
-                        <div class="product_cate">이것은 카테고리!</div>
-                        <div class="product_price">이것은 가격입니다.</div> 
+                        <div class="product_cate"><?php echo strtoupper($info[0]->mname) . ' ' . $info[0]->sname ?></div>
+                        <div class="product_price"><?php echo $info[0]->price . '￥' ?></div> 
                     </div>
                     <div class="product_viewinfo_container_info">
-                        <div class="product_title">이것은 테스트 입니다</div>
+                        <div class="product_title"><?php echo strtoupper($info[0]->name) ?></div>
                     </div>
                 
                     <!-- size  -->
                     <div class="product_size">
                         <div class="size_title">사이즈 선택</div>
                         <div class="size_button">
-                            <button type="button" id="size1" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size2" onclick=sizeCheck(id) class="btn btn-light" disabled>Link</button>
-                            <button type="button" id="size3" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size4" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size5" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size6" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size7" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size8" onclick=sizeCheck(id) class="btn btn-light">Link</button>
-                            <button type="button" id="size9" onclick=sizeCheck(id) class="btn btn-light">Link</button>
+                            <?php 
+                                $i = 1;
+                                foreach ($size as $key) {
+                                    foreach ($key as $value ) {
+                                        echo '<button type="button" id="size' . $i . '" onclick=sizeCheck(id) class="btn btn-light">' . $value . '</button>';
+                                        $i++;
+                                    }
+                                }
+                                
+                            ?>
                         </div>
                     </div>
 
@@ -112,7 +114,7 @@
             </div>
         </div>
     </main>
-
+    
     <!-- footer -->
     <?php include_once  APPPATH ."views/public/footer.php"; ?>
 </body>

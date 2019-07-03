@@ -4,9 +4,8 @@
     <div class="header_right">
         <div class="header_right_register">
             <?php 
-                
-                if(!isset($_SESSION['id'])) {
-                    
+                $id = $this->session->userdata('id');
+                if(!isset($id)) {
                     echo "<a id='signin' data-toggle='modal' href='#myModal'>SING IN</a>";
                 }else {
                     echo "<a id='signout' onclick='logout()'>SIGN OUT</a>";

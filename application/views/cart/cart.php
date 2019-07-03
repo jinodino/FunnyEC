@@ -29,10 +29,13 @@
     <!-- css link -->
     <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
     <link rel="stylesheet" type="text/css" href="../../../public/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="../../../public/css/productInfo.css">
 </head>
 <body>
     <!-- javacscipt include -->
     <script type="text/javascript" src="../../../public/script/product.js"></script>
+    <script type="text/javascript" src="../../../public/script/productInfo.js"></script>
+    <script type="text/javascript" src="../../../public/script/cart.js"></script>
 
     <!-- header -->
     <?php include_once  APPPATH ."views/public/header.php"; ?>
@@ -43,43 +46,20 @@
 
     <!-- main -->
     <main class="main">
+        <!-- layered -->
+        <?php include_once  APPPATH ."views/public/layered.php"; ?>
+        
         <!-- product_top -->
         <?php include_once  APPPATH ."views/public/product_top.php"; ?>
 
         <div class="artical">
             <?php include_once  APPPATH ."views/public/product_menu.php"; ?>
-
+            <?php include_once  APPPATH ."views/cart/cartChangeModal.php"; ?>
             <div class="product_view">
-                <div class="cart-container">
-                    <div class="cart-title">会員登録</div>
-                    <div class="cart-form">
-                        <!-- id pw name phone email address -->
-                        <!-- id = email -->
-                        <p class="cart-form-box">
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p>  
-                        <!-- pw -->
-                        <p>
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p> 
-                        <!-- pw re -->
-                        <p>
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p> 
-                        <!-- name -->
-                        <p>
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p> 
-                        <!-- email -->
-                        <p>
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p> 
-                        <!-- phone -->
-                        <p>
-                            <input type="text" class="form-control" id="loginId" aria-describedby="emailHelp" placeholder="Enter Id">
-                        </p> 
-                    </div>
-                </div>
+                <?php 
+                    if(!empty($this->cart->contents())) include_once  APPPATH ."views/cart/cart-yes.php"; 
+                    else include_once  APPPATH ."views/cart/cart-no.php";
+                ?>
             </div>
         </div>
     </main>

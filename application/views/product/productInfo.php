@@ -44,6 +44,9 @@
 
 
     <main class="main">
+        <!-- layered -->
+        <?php include_once  APPPATH ."views/public/layered.php"; ?>
+
         <!-- product_top -->
         <?php include_once  APPPATH ."views/public/product_top.php"; ?>
 
@@ -53,10 +56,13 @@
             
             <div class="productinfo_view">
                 <div class="productinfo_view_container">
+           
                     <div class="productinfo_view_container_picture">
                         <div class="productinfo_view_container_picture1">
                             <div class="productinfo_view_container_picture_img">
+
                                 <?php echo '<img src="' . $info[0]->src . '" alt="">'; ?>
+                               
                             </div>
                             <div class="productinfo_view_container_picture_subimg">
                                 서브 사진 
@@ -67,9 +73,11 @@
                     <div class="product_viewinfo_container_info">
                         <div class="product_cate"><?php echo strtoupper($info[0]->mname) . ' ' . $info[0]->sname ?></div>
                         <div class="product_price"><?php echo $info[0]->price . '￥' ?></div> 
+                        <div class="product_price_hidden" hidden><?php echo $info[0]->price ?></div> 
                     </div>
                     <div class="product_viewinfo_container_info">
                         <div class="product_title"><?php echo strtoupper($info[0]->name) ?></div>
+                        <div class="product_code" hidden><?php echo $info[0]->code ?></div>
                     </div>
                 
                     <!-- size  -->
@@ -101,15 +109,14 @@
 
                     <!-- 購入  / 気になる --> 
                     <div class="order-warp">
-                        <a href="" class="order-buy">
+                        <a class="order-buy" onclick='orderGo()'>
                             <span>購入</span>
                         </a>
-                        <a href="" class="order-cart">
+                        <a class="order-cart"  onclick=insertCart()>
                             <span>気になる</span>
                         </a>
                     </div>
 
-                    
                 </div>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <div class="menual_search">
         <div class="container-1">
             <span class="icon"><i class="fa fa-search"></i></span>
-            <input type="search" id="search" placeholder="Search..." />
+            <input type="search" id="search" placeholder="Search..."/>
         </div>
     </div>
 </div>

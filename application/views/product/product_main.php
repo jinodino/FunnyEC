@@ -1,4 +1,4 @@
-<?php @session_start(); ?>
+<?php //@session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,6 +42,9 @@
 
     <!-- main -->
     <main class="main">
+        <!-- layered -->
+        <?php include_once  APPPATH ."views/public/layered.php"; ?>
+        
         <!-- product_top -->
         <?php include_once  APPPATH ."views/public/product_top.php"; ?>
 

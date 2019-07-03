@@ -14,7 +14,7 @@ class RegistrationModel extends CI_model {
 
             try {
               
-                $result = $this->loginValicateCheck($id, $pw);
+                $result = $this->loginValidateCheck($id, $pw);
                 return $result;
                 if(!$result) return 0;
               
@@ -32,7 +32,7 @@ class RegistrationModel extends CI_model {
     * @param  string  $pw 
     * @return integer 1, 0 
     */
-    function loginValicateCheck($id, $pw) {
+    function loginValidateCheck($id, $pw) {
 
         try {
 
@@ -52,16 +52,51 @@ class RegistrationModel extends CI_model {
     }
 
     // ID regisert
-    function register() {
+    function register($id, $pw, $name, $ph) {
         try {
-            //code...
-            //$sql = "insert into user (id, password, classification) values ('" . $id . "','" . $pw . "', '&')";
+            // id validate test
+            $validate = $this->registerValidateCheck($id);
+            // validate check  -> 2 있는 아이디
+            if(!$validate) return 0;
 
-            //$result = $this->db->query($sql);
+            $sql = "insert into user (id, password, classification) values ('" . $id . "','" . $pw . "', 'c')";
+
+            $result = $this->db->query($sql);
+
+            try {
+
+                $sql = "insert into customer (id, name, phone) values ('$id', '$name', '$ph')";
+
+                $result = $this->db->query($sql);
+
+            } catch (\Throwable $th) {
+                
+            }
 
         } catch (\Throwable $th) {
             //throw $th;
         }
+
+        return 1;
+
+    }
+
+    function registerValidateCheck($id) {
+
+        try{
+            
+            $sql = "SELECT * FROM user WHERE id = '$id'";
+
+            $result = $this->db->query($sql)->result();
+
+
+            if($result) return 0;
+            
+        } catch (\Throwable $th) {
+            
+        }
+
+        return 1;
     }
 }
 

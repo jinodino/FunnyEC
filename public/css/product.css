@@ -229,7 +229,12 @@
 
     /* main CSS */
     .main {
+        position: relative;
         min-height: 76vh;
+    }
+
+    .layered {
+        position:absolute;
     }
 
     .artical {
@@ -252,11 +257,7 @@
         flex: 1;
     }
 
-    .testbutton {
-        cursor: pointer;
-        margin: 0 40px 0 0;
-    }
-
+  
 
     .product_top_first {
         padding: 20px 10px 20px 10px;
@@ -282,7 +283,7 @@
 
     .product_top_third {
         height: 30%;
-        margin: 7px 15px 0 0;
+        margin: 7px 80px 0 0;
     }
     
     .product_menu {
@@ -411,7 +412,7 @@
     /* modal css */
     .modal-content {
         width: 480px;
-        height: 435px;
+        height: 480px;
         margin: 180px auto;
     }
     
@@ -486,3 +487,62 @@
         cursor: pointer;
     }
 
+    .signup-div {
+        margin-top: 15px;
+    }
+
+    .signup-div span{
+        margin-top: 10px;
+        font-weight: bold;
+        font-size: 12px;
+        color: #7575757c;
+    }
+
+    .signup-div a{
+        margin-top: 10px;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 12px;
+        color: #000000;
+        cursor: pointer;
+    }
+
+    .testbutton {
+        cursor: pointer;
+    }  
+
+ 
+    .sortbutton {
+        cursor: pointer;
+        margin: 0 15px 0 20px;
+    }   
+
+
+    .sort-content {
+        margin: 0 2px 5px 0;
+    }
+
+    .popover-content {
+        text-align: right;
+        height: 110px;
+        width: 110px;
+    }
+
+    .popover-content-div {
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        padding: 5px 0;
+    }
+
+    #new:hover {
+        color: #adadad;
+    }
+
+    #high:hover {
+        color: #adadad;
+    }
+
+    #low:hover {
+        color: #adadad;
+    }

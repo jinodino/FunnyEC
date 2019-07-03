@@ -35,7 +35,7 @@
                             <input type="password" id="password" name="password" placeholder="at least 8 characters" minlength="8" required/>
                             </p>
                             
-                            <p>
+                            <p class="qqq">
                             <label for="email">Your Email</label>
                             <input type="email" id="email" name="email" placeholder="iamsrithan@gmail.com" required /> 
                             </p>

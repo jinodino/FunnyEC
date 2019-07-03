@@ -25,6 +25,12 @@
                 </div>
                 <div class="modal-footer">
                     <button id="loginbutton">LOGIN</button>
+                    <div class="signup-div">
+                        <span>
+                            会員ではないでしょうか？<a href="/signupPageGo">会員登録</a>
+                        </span>
+                    </div>
+                    
                 </div>
             </div>
         </div>

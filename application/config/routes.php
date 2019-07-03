@@ -49,20 +49,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
-$route['404_override'] = '';
+$route['default_controller']   = 'welcome';
+$route['404_override']         = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login']   = 'LoginController/login';
-$route['logout']  = 'LoginController/logout'; 
-$route['product'] = 'LoginController/gogo';
+$route['login']                = 'LoginController/login';
+$route['logout']               = 'LoginController/logout'; 
+$route['regist']               = 'LoginController/regist';
+
 
 // 
-$route['productload']    = 'ProductController/view';
-$route['productInfo']    = 'ProductController/productInfo';
-$route['selectCategory'] = 'ProductController/categoryView';
+$route['productload']          = 'ProductController/view';
+$route['productInfo']          = 'ProductController/productInfo';
+$route['selectCategory']       = 'ProductController/categoryView';
+
+
+// search routing
+$route['product/(:any)']       = "ProductController/searching";
+$route['orderbyView']          = "ProductController/orderbyView";
+
+// cart routing
+$route['insertCart']           = 'ProductController/insertCart';
+$route['totalDeleteCart']      = 'ProductController/totalDeleteCart';
+$route['deleteCart']           = 'ProductController/deleteCart';
+$route['optionChange']         = 'ProductController/optionChange';
 
 // page routing
-$route['cartPageGo']     = 'PageController/cart';
+$route['cartPageGo']           = 'PageController/cart';
+$route['signupPageGo']         = 'PageController/signup';
+$route['product']              = 'LoginController/gogo';
+$route['orderPage']            = 'OrderController/orderPage';
+$route['cartOrderPage']        = 'OrderController/cartOrderPage';
+$route['order']                = 'OrderController/order';
+
+
 // test route
-$route['test'] = 'LoginController/test';
+$route['test']                 = 'LoginController/test';

@@ -17,10 +17,32 @@ class LoginController extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+	// public function __construct() {
+    //     parent::__construct();
+    //     $this->load->library('session');
+    // }
+	
 
 	// test main page
 	public function gogo() {
 		$this->load->view('product/product_main');
+	}
+
+	// regist
+	public function regist() {
+		$this->load->model('RegistrationModel');
+
+		$id   = $_POST['customerId'];
+		$pw   = $_POST['customerPassword'];
+		$name = $_POST['customerName'];
+		$ph   = $_POST['customerPhone'];
+
+		$result = $this->RegistrationModel->register($id, $pw, $name, $ph);
+		
+		if(!$result) echo 0;
+
+
+		echo 1;
 	}
 	
 	// login
@@ -32,14 +54,11 @@ class LoginController extends CI_Controller {
         $id = $_POST['customerId'];
         $pw = $_POST['customerPassword'];
 		
-
-		//$test = array('id' => $_SESSION['id'], 'pw' => $_SESSION['password']);
-
 		$result_data = $this->RegistrationModel->login($id, $pw);
-
 
 		if(!$result_data) { echo 0; }
 		else { 
+			// session set
 			$_SESSION['id'] = $id;
 			$_SESSION['password'] = $pw;
 			$sessionData = array( 
@@ -48,7 +67,6 @@ class LoginController extends CI_Controller {
 			);
 
 			echo json_encode($sessionData);
-			
 		}
 	
 	}
@@ -57,6 +75,7 @@ class LoginController extends CI_Controller {
 	function logout() {
 		session_start();
 		session_destroy();
+		echo 1;
 	}
 
 	// test function

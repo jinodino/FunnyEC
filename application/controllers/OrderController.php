@@ -70,50 +70,45 @@ class OrderController extends CI_Controller {
 
     public function order()
     {
-        $member      = $_POST['member'];
-        $email       = $_POST['email'];
-        $phone       = $_POST['phone'];
-        $reName      = $_POST['reName'];
-        $rePhone     = $_POST['rePhone'];
-        $destination = $_POST['destination'];
-        $memo        = $_POST['memo'];
-        $payment     = $_POST['payment'];
-        $money       = $_POST['money'];
-        
-        $this->load->library('email');
-        $config['protocol'] = "smtp";
-        $config['mailtype'] = "html";
-        $config['smtp_host'] = "smtp.naver.com";
-        $config['smtp_user'] = "sonjh32";
-        $config['smtp_pass'] = "wlsgh950";
-        $config['smtp_port'] = "587";
-        $config['smtp_crypto'] = "tls";         
-        $config['charset']  = 'utf-8';
-        /* Naver */
-        
 
-        $this->email->initialize($config);
-            
-        $this->email->from('asdasd@naver.com', 'asd');        
-        
-        $this->email->to('sonjh32@naver.com'); 
-            
-        $this->email->subject('메일 제목');
-        $this->email->message('asd');  
-            
-        if ( ! $this->email->send())
-        {
-                // Generate error
-                echo "ERROR";
-        } else {
-                    echo "Successfully";
-        }        
-        echo $this->email->print_debugger();
+        $this->load->model('OrderModel');
 
+        $member      = $_POST['member'];        // 회원 유무 확인 -> 회원 아이디 / 비회원 1
+        $email       = $_POST['email'];         // 주문자 이메일
+        $phone       = $_POST['phone'];         // 주문자 전화번호
+        $reName      = $_POST['reName'];        // 받는 사람 폰
+        $rePhone     = $_POST['rePhone'];       // 받는 사람 전화
+        $destination = $_POST['destination'];   // 목적지
+        $memo        = $_POST['memo'];          // 메모
+        $payment     = $_POST['payment'];       // 지불 방법
+        $money       = $_POST['money'];         // 전체 지불 돈
+        $key         = $this->generateRandomString(); // \random
+
+        // 주문 상품 정보 
+        $code        = $_POST['code'];          // 코드
+        $size        = $_POST['size'];          // 사이즈
+        $qty         = $_POST['qty'];          // 수량
+        
+       
+        $key = $this->OrderModel->orderStart($key, $member, $email, $phone, $reName, $rePhone, $destination, $memo, $payment, $money, $code, $size, $qty);
+        $this->OrderModel->orderDelail($key, $code, $size, $qty);
+       
+        // input order db
 
  
         // cart delete
-        // $this->cart->destroy();
+        $this->cart->destroy();
+    }
+
+    // random string
+    function generateRandomString($length = 6) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
     }
 
 }

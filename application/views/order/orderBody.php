@@ -203,6 +203,7 @@
             <div class="cart-body-right-header" onclick="listFolder()" draggable="true">注文内訳</div>
             <div class="cart-body-right-body">
                 <div class="info-price">
+                <div class="order_array_info" hidden value="<?php $info ?>"><?php $info ?></div>
                     <?php foreach ($info as $key) { ?>
                         <?php foreach ($key as $value) {  ?>
                         <div id="<?php echo $value['code'] ?>" onclick="goInfo(id)" class="order-list-product-container">
@@ -212,8 +213,11 @@
                             <div class="order-list-container-right">
                                 <div class="order-name"><?php echo $value['name']; ?></div>
                                 <div class="order-code" hidden><?php echo $value['code']; ?></div>
+                                <div class="order-code-hidden" hidden><?php echo $value['code'] . '-'; ?></div>
                                 <div class="order-size"><?php echo  "SIZE : " . $value['size']; ?></div>
+                                <div class="order-size-hidden" hidden><?php echo $value['size'] . '-'; ?></div>
                                 <div class="order-qty"><?php echo "quantity : " . $value['qty']; ?></div>
+                                <div class="order-qty-hidden" hidden><?php echo $value['qty'] . '-'; ?></div>
                                 <div class="order-price"><?php echo number_format($value['price']) . '￥'; ?></div>
                             </div>
                             <div class="order-list-container-footer"></div>

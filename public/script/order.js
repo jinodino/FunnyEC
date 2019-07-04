@@ -15,8 +15,8 @@ function stepOne() {
     // value -> new div
     var newbody   = '<div class="stepOne-form">';
     newbody      += '   <div class="stepOne-form-left">';
-    newbody      += '       <div id="emailValue">Email : ' + emailValue + '</div>';
-    newbody      += '       <div id="phoneValue">Phone : ' + phoneValue + '</div>';
+    newbody      += '       <div id="emailValue">' + emailValue + '</div>';
+    newbody      += '       <div id="phoneValue">' + phoneValue + '</div>';
     newbody      += '   </div>';
     newbody      += '   <div class="stepOne-form-right">';
     newbody      += '       <button class="modify-button" onclick="stepOneModify()">change</button>';
@@ -278,9 +278,21 @@ function stepThree() {
     var rePhone     = $('#recipientPhoneValue').text();
     var destination = $('#destinationValue').text();
     var memo        = $('#memoValue').text();
-    var payment     = $('#selectButtonId').text();
+    var payment     = $('.select-payment button').text();
     var money       = $('#checkThreeButtonId').attr("name");
-
+    
+    var code = $('.order-code-hidden').text();
+    var size = $('.order-size-hidden').text();
+    var qty = $('.order-qty-hidden').text();
+    code = code.split('-');
+    size = size.split('-');
+    qty = qty.split('-');
+    
+    payment = payment.trim()
+    code = code.filter(Number);
+    size = size.filter(Number);
+    qty = qty.filter(Number);
+ 
     $.ajax({
         url : '/order'
 
@@ -295,11 +307,15 @@ function stepThree() {
             destination : destination,
             memo        : memo,
             payment     : payment,
-            money       : money
+            money       : money,
+            code        : code,
+            size        : size,
+            qty         : qty
         }
         , success : function(res){
-            // location.replace('/product');
-            console.log(res)
+            alert("注文完了しました")
+            location.replace('/product');
+            // console.log(res)
         }   
         , error : function(){
             alert('Error');

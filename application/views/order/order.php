@@ -40,6 +40,7 @@
     <script type="text/javascript" src="../../../public/script/productInfo.js"></script>
     <script type="text/javascript" src="../../../public/script/cart.js"></script>
     <script type="text/javascript" src="../../../public/script/order.js"></script>
+    
 
     <!-- header -->
     <?php //include_once  APPPATH ."views/public/header.php"; ?>

@@ -292,6 +292,8 @@ function stepThree() {
     code = code.filter(Number);
     size = size.filter(Number);
     qty = qty.filter(Number);
+
+    console.log(memo)
  
     $.ajax({
         url : '/order'
@@ -313,9 +315,10 @@ function stepThree() {
             qty         : qty
         }
         , success : function(res){
+            
             alert("注文完了しました")
-            location.replace('/product');
-            // console.log(res)
+            // location.replace('/product');
+            console.log(res)
         }   
         , error : function(){
             alert('Error');

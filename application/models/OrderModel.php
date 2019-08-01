@@ -9,18 +9,29 @@ class OrderModel extends CI_model {
 
         
         $date = date('Y-m-d H:i:s');
-        $sql = "
+        try {
+            $sql = "
             INSERT INTO ec.order (order_key, total_price, order_email, order_phone, re_name, re_phone, destination, memo, payment, order_time)
             VALUES ('$key', $money, '$email', '$phone', '$reName', '$rePhone', '$destination', '$memo', '$payment', '$date')
-        ";
+            ";
 
-        $result = $this->db->query($sql);
+            $result = $this->db->query($sql);
 
-        $sql = "SELECT order_id FROM ec.order WHERE order_key = '$key'";
+            try {
+                $sql = "SELECT order_id FROM ec.order WHERE order_key = '$key'";
 
-        $key = $this->db->query($sql)->result();
+                $key = $this->db->query($sql)->result();
+        
+                return $key[0]->order_id;
+            } catch (\Throwable $th) {
 
-        return $key[0]->order_id;
+            }
+        } catch (\Throwable $th) {
+            
+        }
+        
+
+        
 
         // return $categoryNum;
     }

@@ -161,7 +161,7 @@
                         </div>
                         <div id="postbox" class="payment-method-form" onclick="selectPayment(this)">
                             <button>
-                                郵　便　切　替
+                                郵　便　振　替
                                 <i id="postboxi" class="fa fa-check" hidden></i>
                             </button>
                         </div>
@@ -217,7 +217,7 @@
                                 <div class="order-size"><?php echo  "SIZE : " . $value['size']; ?></div>
                                 <div class="order-size-hidden" hidden><?php echo $value['size'] . '-'; ?></div>
                                 <div class="order-qty"><?php echo "quantity : " . $value['qty']; ?></div>
-                                <div class="order-qty-hidden" hidden><?php echo $value['qty'] . '-'; ?></div>
+                                <div class="order-qty-hidden" hidden><?php $price1 += $value['price'] * $value['qty'];  echo $value['qty'] . '-'; ?></div>
                                 <div class="order-price"><?php echo number_format($value['price']) . '￥'; ?></div>
                             </div>
                             <div class="order-list-container-footer"></div>
@@ -231,7 +231,7 @@
                     <span class="label">総予想決済金額</span>
                     <span class="price">
                         <?php 
-                            echo '<span class="price">' . number_format($price) . "￥" .  '</span>'; 
+                            echo '<span class="price">' . number_format($price1) . "￥" .  '</span>'; 
                         ?>
                     </span>
                     <span class="total-price-bottom"></span>

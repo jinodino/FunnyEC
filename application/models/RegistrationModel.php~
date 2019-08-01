@@ -37,7 +37,7 @@ class RegistrationModel extends CI_model {
         try {
 
             // id, pw select query 
-            $sql = "SELECT * FROM user WHERE id = '" . $id   . "' AND " . "password = '" . $pw . "'";
+            $sql = "SELECT * FROM user WHERE id = " . $id   . " AND " . "password = " . $pw;
             // query result 
             $result = $this->db->query($sql)->result();
 

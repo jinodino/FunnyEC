@@ -29,12 +29,12 @@
     <!-- css link -->
     <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
     <link rel="stylesheet" type="text/css" href="../../../public/css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../../../public/css/productInfo.css">
+    <link rel="stylesheet" type="text/css" href="../../../public/css/productinfo.css">
 </head>
 <body>
     <!-- javacscipt include -->
     <script type="text/javascript" src="../../../public/script/product.js"></script>
-    <script type="text/javascript" src="../../../public/script/productInfo.js"></script>
+    <script type="text/javascript" src="../../../public/script/productinfo.js"></script>
     <script type="text/javascript" src="../../../public/script/cart.js"></script>
 
     <!-- header -->

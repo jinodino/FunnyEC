@@ -94,7 +94,8 @@ class OrderController extends CI_Controller {
         $this->OrderModel->orderDelail($key, $code, $size, $qty);
        
         // input order db
-
+	$optionValue = "From: who <SONSATIONAL@naver.com>\r\n";
+	//mail($email, "Order Info", "order", $optionValue);
  
         // cart delete
         $this->cart->destroy();

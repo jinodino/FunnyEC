@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href"../../../public/css/cart.css">
+<link rel="stylesheet" type="text/css" href"../funnyec/public/css/cart.css">
 
 
 

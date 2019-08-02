@@ -161,7 +161,7 @@
                         </div>
                         <div id="postbox" class="payment-method-form" onclick="selectPayment(this)">
                             <button>
-                                郵　便　切　替
+                                郵　便　振　替
                                 <i id="postboxi" class="fa fa-check" hidden></i>
                             </button>
                         </div>

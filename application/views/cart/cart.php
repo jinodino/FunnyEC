@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 합쳐지고 최소화된 최신 CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 
@@ -27,15 +28,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- css link -->
-    <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
-    <link rel="stylesheet" type="text/css" href="../../../public/css/cart.css">
-    <link rel="stylesheet" type="text/css" href="../../../public/css/productinfo.css">
+    <link rel="stylesheet" type="text/css" href="../funnyec/public/css/product.css">
+    <link rel="stylesheet" type="text/css" href="../funnyec/public/css/cart.css">
+    <link rel="stylesheet" type="text/css" href="../funnyec/public/css/productinfo.css">
 </head>
 <body>
     <!-- javacscipt include -->
-    <script type="text/javascript" src="../../../public/script/product.js"></script>
-    <script type="text/javascript" src="../../../public/script/productinfo.js"></script>
-    <script type="text/javascript" src="../../../public/script/cart.js"></script>
+    <script type="text/javascript" src="../funnyec/public/script/product.js"></script>
+    <script type="text/javascript" src="../funnyec/public/script/productinfo.js"></script>
+    <script type="text/javascript" src="../funnyec/public/script/cart.js"></script>
 
     <!-- header -->
     <?php include_once  APPPATH ."views/public/header.php"; ?>

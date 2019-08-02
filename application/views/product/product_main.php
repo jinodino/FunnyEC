@@ -1,4 +1,40 @@
-<?php //@session_start(); ?>
+<?php 
+    $date = date("Y-m-d");
+    $dateArr = explode("-", $date);
+    $dateform = $dateArr[0] . $dateArr[1] . $dateArr[2];
+    // if(file_exists('/etc/httpd/logs/access_log')) {
+    //     echo "exist";
+    // } else {
+    //     echo "NO";
+    // }
+
+    // $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
+    $file_handle = fopen("/etc/httpd/logs/access_log-" . $dateform, "r");
+    $count = 0;
+    while (!feof($file_handle)) {
+
+        $line_of_text = fgets($file_handle);
+
+        if($line_of_text != "") {
+            $logArr = explode(" ", $line_of_text);
+        
+            print ($logArr[0] . " : " . $logArr[6] . "\n");
+
+            if($logArr[6] == "/funnyec/product") {
+                $count++;
+                
+            }
+            flush();
+        }
+        
+    }
+    
+    fclose($file_handle);
+    print_r($count);     
+        
+        
+
+// ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +63,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- css link -->
-    <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
+    <link rel="stylesheet" type="text/css" href="../funnyec/public/css/product.css">
 </head>
 <body>
     <!-- javacscipt include -->
-    <script type="text/javascript" src="../../../public/script/product.js"></script>
+    <script type="text/javascript" src="../funnyec/public/script/product.js"></script>
 
     <!-- header -->
     <?php include_once  APPPATH ."views/public/header.php"; ?>
@@ -55,11 +91,11 @@
             <div class="product_view">
                 <div class="mainpageImg">
                     <div class="mainpageImg_left">
-                        <img src="../../../public/picture/mainpage.png" alt="">
+                        <img src="../funnyec/public/picture/mainpage.png" alt="">
                     </div>
                     <div class="mainpageImg_right">
-                        <img src="../../../public/picture/mainpage2.jpg" alt="">
-                        <img src="../../../public/picture/mainpage3.jpg" alt="">
+                        <img src="../funnyec/public/picture/mainpage2.jpg" alt="">
+                        <img src="../funnyec/public/picture/mainpage3.jpg" alt="">
                     </div> 
                 </div>                
             </div>

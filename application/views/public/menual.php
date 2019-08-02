@@ -1,5 +1,5 @@
 <div class="menual">
-    <div class="menual_logo" onclick="window.location.replace('/product')"></div>
+    <div class="menual_logo" onclick="window.location.replace('/funnyec/product')"></div>
     <div class="menual_menu">
         <ul class="menual_menu_ul">
             <li class="menual_menu_casual" id="casul" onclick=selectMenual(id) value="Casul">CASUL</li>

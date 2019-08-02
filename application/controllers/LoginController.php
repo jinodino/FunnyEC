@@ -25,6 +25,22 @@ class LoginController extends CI_Controller {
 
 	// test main page
 	public function gogo() {
+		// $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
+
+		// while (!feof($file_handle)) {
+
+		// 	$line_of_text = fgets($file_handle);
+
+		// 	$list
+			
+			
+			
+		// 	print $line_of_text . "\n";
+		// 	flush();
+			
+		// }
+        
+    	// fclose($file_handle);
 		$this->load->view('product/product_main');
 	}
 

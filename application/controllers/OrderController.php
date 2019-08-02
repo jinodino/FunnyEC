@@ -88,7 +88,7 @@ class OrderController extends CI_Controller {
         $code        = $_POST['code'];          // 코드
         $size        = $_POST['size'];          // 사이즈
         $qty         = $_POST['qty'];          // 수량
-        
+
        
         $key = $this->OrderModel->orderStart($key, $member, $email, $phone, $reName, $rePhone, $destination, $memo, $payment, $money, $code, $size, $qty);
         $this->OrderModel->orderDelail($key, $code, $size, $qty);

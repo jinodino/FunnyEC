@@ -11,6 +11,6 @@
         </div>
     </div>
     <div class="picturearea">
-        <img src="../../../public/picture/aaa.jpg" alt="">
+        <img src="../funnyec/public/picture/aaa.jpg" alt="">
     </div>
 </div>

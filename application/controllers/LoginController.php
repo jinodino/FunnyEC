@@ -1,46 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+include "CountController.php";
 
 class LoginController extends CI_Controller {
 
-	/**
-	 * Index Page for this controller.
-	 *
-	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
-	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
-	 *	- or -
-	 * Since this controller is set as the default controller in 
-	 * config/routes.php, it's displayed at http://example.com/
-	 *
-	 * So any other public methods not prefixed with an underscore will
-	 * map to /index.php/welcome/<method_name>
-	 * @see http://codeigniter.com/user_guide/general/urls.html
-	 */
-	// public function __construct() {
-    //     parent::__construct();
-    //     $this->load->library('session');
-    // }
-	
+	public $extendsTest;
+
+	public function __construct() {
+		parent::__construct();
+		$this->extendsTest = new CountController();
+    }
 
 	// test main page
 	public function gogo() {
-		// $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
+		
+		$count = $this->extendsTest->countPVUU();
 
-		// while (!feof($file_handle)) {
-
-		// 	$line_of_text = fgets($file_handle);
-
-		// 	$list
-			
-			
-			
-		// 	print $line_of_text . "\n";
-		// 	flush();
-			
-		// }
-        
-    	// fclose($file_handle);
+		print_r($count);
+		// $count->pv .  " : " . $count->uu;
 		$this->load->view('product/product_main');
 	}
 

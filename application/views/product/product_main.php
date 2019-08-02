@@ -1,25 +1,31 @@
 <?php 
-    $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
-    $count = 0;
-    while (!feof($file_handle)) {
-
-        $line_of_text = fgets($file_handle);
-
-        if($line_of_text != "") {
-            $logArr = explode(" ", $line_of_text);
-        
-            print $line_of_text . "\n";
-
-            if($logArr[6] == "/product") {
-                $count++;
-            }
-            flush();
-        }
-        
-    }
+    // $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
+    // $count = 0;
     
-    fclose($file_handle);
-    print_r($count);     
+    // $date = date("Y-m-d");
+
+    // $dateArr = explode("-", $date);
+    // $dateform = $dateArr[0] . $dateArr[1] . $dateArr[2]; 
+    // print_r($dateform);
+    // while (!feof($file_handle)) {
+
+    //     $line_of_text = fgets($file_handle);
+
+    //     if($line_of_text != "") {
+    //         $logArr = explode(" ", $line_of_text);
+        
+    //         print $line_of_text . "\n";
+
+    //         if($logArr[6] == "/product") {
+    //             $count++;
+    //         }
+    //         flush();
+    //     }
+        
+    // }
+    
+    // fclose($file_handle);
+    // print_r($count);     
         
         
 

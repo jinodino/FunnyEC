@@ -26,10 +26,20 @@
     
     // fclose($file_handle);
     // print_r($count);     
-        
+    // $connect = mysqli_connect("localhost", "root", "rootroot", "ec");
+
+    // $sql = "SELECT * FROM ec.order";
+    // $result = mysqli_query($connect, $sql);
+
+    // $info = mysqli_fetch_array($result);
+    // $who = "sonjh32@naver.com";
+    
+    // $title = "PHP TEST YHAHO";
+    // $content  = "";
+    
         
 
-// ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

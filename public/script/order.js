@@ -294,7 +294,7 @@ function stepThree() {
     qty = qty.filter(Number); 
    console.log(memo + qty + code + qty);
     $.ajax({
-        url : '/order'
+        url : 'order'
 
         , type     : 'post'
         , datetype : 'JSON'
@@ -314,7 +314,7 @@ function stepThree() {
         }
         , success : function(res){
             alert("注文完了しました");
-            location.replace('/product');
+            location.replace('/funnyec/product');
             // console.log(res)
         }   
         , error : function(){
@@ -329,5 +329,5 @@ function listFolder() {
 }
 
 function goInfo(id) {
-    window.location.href = "/productInfo?productCode=" + id;
+    window.location.href = "/funnyec/productInfo?productCode=" + id;
 }

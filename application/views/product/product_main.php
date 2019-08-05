@@ -1,36 +1,31 @@
 <?php 
-    $date = date("Y-m-d");
-    $dateArr = explode("-", $date);
-    $dateform = $dateArr[0] . $dateArr[1] . $dateArr[2];
-    // if(file_exists('/etc/httpd/logs/access_log')) {
-    //     echo "exist";
-    // } else {
-    //     echo "NO";
-    // }
-
     // $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
-    $file_handle = fopen("/etc/httpd/logs/access_log-" . $dateform, "r");
-    $count = 0;
-    while (!feof($file_handle)) {
-
-        $line_of_text = fgets($file_handle);
-
-        if($line_of_text != "") {
-            $logArr = explode(" ", $line_of_text);
-        
-            print ($logArr[0] . " : " . $logArr[6] . "\n");
-
-            if($logArr[6] == "/funnyec/product") {
-                $count++;
-                
-            }
-            flush();
-        }
-        
-    }
+    // $count = 0;
     
-    fclose($file_handle);
-    print_r($count);     
+    // $date = date("Y-m-d");
+
+    // $dateArr = explode("-", $date);
+    // $dateform = $dateArr[0] . $dateArr[1] . $dateArr[2]; 
+    // print_r($dateform);
+    // while (!feof($file_handle)) {
+
+    //     $line_of_text = fgets($file_handle);
+
+    //     if($line_of_text != "") {
+    //         $logArr = explode(" ", $line_of_text);
+        
+    //         print $line_of_text . "\n";
+
+    //         if($logArr[6] == "/product") {
+    //             $count++;
+    //         }
+    //         flush();
+    //     }
+        
+    // }
+    
+    // fclose($file_handle);
+    // print_r($count);     
         
         
 

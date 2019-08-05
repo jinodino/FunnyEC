@@ -253,7 +253,7 @@ function selectCategory(id) {
 // 상품 상세 페이지 이동
 function productInfoPageGo(num) {
     var infoPage = num;
-    location.href = "/productInfo?productCode=" + infoPage;
+    location.href = "/funnyec/productInfo?productCode=" + infoPage;
 }
 
 // 카트 페이지 이동

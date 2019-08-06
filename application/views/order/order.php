@@ -48,7 +48,7 @@
     <?php //include_once  APPPATH ."views/public/loginModal.php"; ?>
     <!-- menual -->
     <div class="menual">
-        <div class="menual_logo" onclick="window.location.replace('/product')"></div>
+        <div class="menual_logo" onclick="window.location.replace('/funnyec/product')"></div>
     </div>
 
 

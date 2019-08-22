@@ -66,7 +66,7 @@ $(document).ready(function(){
 
 
     $.ajax({
-        url : '/insertCart'
+        url : 'insertCart'
 
         , type : 'post'
         , data : {
@@ -123,6 +123,6 @@ $(document).ready(function(){
         size    : size,
     }
     
-    window.location.href = '/orderPage?code=' + code + '&qty=' + qty + '&price=' + price + '&name=' + name + '&img=' + img + '&size=' + size;
+    window.location.href = '/funnyec/orderPage?code=' + code + '&qty=' + qty + '&price=' + price + '&name=' + name + '&img=' + img + '&size=' + size;
    
  }

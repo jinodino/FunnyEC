@@ -1,17 +1,20 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+include "CountController.php";
 class OrderController extends CI_Controller {
   
     public function __construct() {
         parent::__construct();
         $this->load->library('cart');
         // $this->load->library('email');
+        $this->extendsTest = new CountController();
     }
 
     // cart page
     public function orderPage() 
     {
-        
+        // $count = $this->extendsTest->countPVUU();
+
+		// print_r($count);       
         //  post 
         $code  = $_GET['code'];
         $qty   = $_GET['qty'];
@@ -46,7 +49,9 @@ class OrderController extends CI_Controller {
     {
 
         $arr = array();
-        
+        // $count = $this->extendsTest->countPVUU();
+
+		// print_r($count);    
         foreach ($this->cart->contents() as $items) {
             $orderArr = array (
                 'code'  => $items['id'],
@@ -89,12 +94,10 @@ class OrderController extends CI_Controller {
         $size        = $_POST['size'];          // 사이즈
         $qty         = $_POST['qty'];          // 수량
 
-       
         $key = $this->OrderModel->orderStart($key, $member, $email, $phone, $reName, $rePhone, $destination, $memo, $payment, $money, $code, $size, $qty);
         $this->OrderModel->orderDelail($key, $code, $size, $qty);
        
-        // input order db   
-        echo 22;
+    
         // cart delete
         $this->cart->destroy();
     }

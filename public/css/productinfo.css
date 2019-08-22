@@ -1,7 +1,7 @@
 /* header CSS */
 @font-face {
     font-family: 'Trade_Gothic';
-    src: url(../../../public/font/TradeGothicLTBoldCondensedNo.20.ttf) format('truetype');
+    src: url(../font/TradeGothicLTBoldCondensedNo.20.ttf) format('truetype');
 }
 
 .product_info_menu {

@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href"../funnyec/public/css/cart.css">
+
+
+
 <!-- login modal -->
 <div class="modal fade" id="cartModal" role="dialog">
         <div class="modal-dialog">

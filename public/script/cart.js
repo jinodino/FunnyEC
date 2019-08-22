@@ -1,6 +1,6 @@
 function totalDeleteCart() {
     $.ajax({
-        url : '/totalDeleteCart'
+        url : 'totalDeleteCart'
 
         , type : 'post'
         , datetype : 'JSON'
@@ -18,7 +18,7 @@ function selectDeleteCart(id) {
     var rowid = id;
 
     $.ajax({
-        url : '/deleteCart'
+        url : 'deleteCart'
 
         , type : 'post'
         , data : {
@@ -45,7 +45,7 @@ function optionChangeModal(id, name) {
     $('#cartModal').modal('show');
 
     $.ajax({
-        url : '/productInfo'
+        url : 'productInfo'
 
         , type : 'get'
         , data : {
@@ -104,7 +104,7 @@ function optionChange() {
     if(!size) return alert("サイズを選択してください");
 
     $.ajax({
-        url : '/optionChange'
+        url : 'optionChange'
 
         , type : 'post'
         , data : {
@@ -128,12 +128,12 @@ function optionChange() {
 }
 
 function gotoshopping() {
-    window.location.replace("/product");
+    window.location.href = "/funnyec/product";
 }
 
 function cartOrderPage() {
     
-    window.location.href = '/cartOrderPage';
+    window.location.href = '/funnyec/cartOrderPage';
     
 }
 

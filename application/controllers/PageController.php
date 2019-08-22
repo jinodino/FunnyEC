@@ -13,9 +13,9 @@ class PageController extends CI_Controller {
     // cart page
     public function cart() 
     {
-        $count = $this->extendsTest->countPVUU();
+        // $count = $this->extendsTest->countPVUU();
 
-		print_r($count);
+		// print_r($count);
         $this->load->view('cart/cart');
     
     }

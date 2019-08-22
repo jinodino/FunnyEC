@@ -74,8 +74,6 @@ class LoginController extends CI_Controller {
 	function test() {
 		$this->load->view('test');
 	}
-
 }
 
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+?>

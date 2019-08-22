@@ -217,7 +217,7 @@
                                 <div class="order-size"><?php echo  "SIZE : " . $value['size']; ?></div>
                                 <div class="order-size-hidden" hidden><?php echo $value['size'] . '-'; ?></div>
                                 <div class="order-qty"><?php echo "quantity : " . $value['qty']; ?></div>
-                                <div class="order-qty-hidden" hidden><?php $price1 += $value['price'] * $value['qty'];  echo $value['qty'] . '-'; ?></div>
+                                <div class="order-qty-hidden" hidden><?php $price1 = 0; $price1 += $value['price'] * $value['qty'];  echo $value['qty'] . '-'; ?></div>
                                 <div class="order-price"><?php echo number_format($value['price']) . '￥'; ?></div>
                             </div>
                             <div class="order-list-container-footer"></div>

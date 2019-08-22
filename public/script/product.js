@@ -58,7 +58,7 @@ $(document).ready(function(){
 
         // ajax --start
         $.ajax({
-            url : '/login'
+            url : 'login'
 
             , type : 'post'
             , data : {
@@ -111,7 +111,7 @@ $(document).ready(function(){
 function logout() {
 
     $.ajax({
-        url : '/logout'
+        url : 'logout'
 
         , type : 'post'
         , datetype : 'JSON'
@@ -130,12 +130,12 @@ function selectMenual(id) {
     
     var productName = $('#' + id).attr('value');
 
-    $(".product_top").load("../../application/views/public/product_top_test.php");
+    $(".product_top").load("../funnyec/application/views/public/product_top_test.php");
     $(".product_top").height('130px');
     
     // ajax --start
     $.ajax({
-        url : '/productload'
+        url : 'productload'
 
         , type : 'post'
         // , type : 'get'
@@ -201,7 +201,7 @@ function selectCategory(id) {
     var selectId = id;
     
     $.ajax({
-        url : '/selectCategory'
+        url : 'selectCategory'
 
         , type : 'post'
         // , type : 'get'
@@ -253,12 +253,12 @@ function selectCategory(id) {
 // 상품 상세 페이지 이동
 function productInfoPageGo(num) {
     var infoPage = num;
-    location.href = "/productInfo?productCode=" + infoPage;
+    location.href = "/funnyec/productInfo?productCode=" + infoPage;
 }
 
 // 카트 페이지 이동
 function cartPageGo() {
-    location.href = "/cartPageGo";
+    location.href = "/funnyec/cartPageGo";
 }
 
 // 토글 
@@ -315,7 +315,7 @@ function orderby(id) {
     var colum   = cate.split('_');
 
     $.ajax({
-        url : '/orderbyView'
+        url : 'orderbyView'
 
         , type : 'post'
         // , type : 'get'

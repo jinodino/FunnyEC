@@ -26,16 +26,17 @@
     
     // fclose($file_handle);
     // print_r($count);     
-    $date = date("Y-m-d");
-    // 0 -> 일 6 -> 토
-    // 현재 날짜가 토, 일이면 매일 안보냄 
-    // 1 -> 월 // 5 -> 금 날짜꺼 보내
-    $day  = date("w");
+    // $connect = mysqli_connect("localhost", "root", "rootroot", "ec");
 
-    $timestamp = strtotime("-1 days");
-    $date = date("Y-m-d", $timestamp);
+    // $sql = "SELECT * FROM ec.order";
+    // $result = mysqli_query($connect, $sql);
 
-    echo $day;
+    // $info = mysqli_fetch_array($result);
+    // $who = "sonjh32@naver.com";
+    
+    // $title = "PHP TEST YHAHO";
+    // $content  = "";
+    
         
 
 ?>
@@ -67,11 +68,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- css link -->
-    <link rel="stylesheet" type="text/css" href="../../../public/css/product.css">
+    <link rel="stylesheet" type="text/css" href="../funnyec/public/css/product.css">
 </head>
 <body>
     <!-- javacscipt include -->
-    <script type="text/javascript" src="../../../public/script/product.js"></script>
+    <script type="text/javascript" src="../funnyec/public/script/product.js"></script>
 
     <!-- header -->
     <?php include_once  APPPATH ."views/public/header.php"; ?>
@@ -95,11 +96,11 @@
             <div class="product_view">
                 <div class="mainpageImg">
                     <div class="mainpageImg_left">
-                        <img src="../../../public/picture/mainpage.png" alt="">
+                        <img src="../funnyec/public/picture/mainpage.png" alt="">
                     </div>
                     <div class="mainpageImg_right">
-                        <img src="../../../public/picture/mainpage2.jpg" alt="">
-                        <img src="../../../public/picture/mainpage3.jpg" alt="">
+                        <img src="../funnyec/public/picture/mainpage2.jpg" alt="">
+                        <img src="../funnyec/public/picture/mainpage3.jpg" alt="">
                     </div> 
                 </div>                
             </div>

@@ -85,3 +85,4 @@ $route['order']                = 'OrderController/order';
 
 // test route
 $route['test']                 = 'LoginController/test';
+$route['cron']                 = 'CronController/formatDate';

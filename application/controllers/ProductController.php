@@ -63,10 +63,10 @@ class ProductController extends CI_Controller {
 
     public function productInfo() 
     {
-        $count = $this->extendsTest->countPVUU();
+        // $count = $this->extendsTest->countPVUU();
 
-		print_r($count);
-
+        // print_r($count);
+        
         $productCode = $_GET['productCode'];
         @$check = $_GET['pageCheck'];
 

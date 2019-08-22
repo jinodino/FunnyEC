@@ -2,7 +2,7 @@
     /* header CSS */
     @font-face {
         font-family: 'Trade_Gothic';
-        src: url(../../../public/font/TradeGothicLTBoldCondensedNo.20.ttf) format('truetype');
+        src: url(../font/TradeGothicLTBoldCondensedNo.20.ttf) format('truetype');
     }
     .header {
         display: flex;
@@ -107,7 +107,7 @@
 
     .menual_logo {
         flex: 1;
-        background-image: url(../../../public/picture/logo.png);
+        background-image: url(../picture/logo.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;
@@ -427,7 +427,7 @@
     }
 
     .login_logo {
-        background-image: url(../../../public/picture/logo.png);
+        background-image: url(../picture/logo.png);
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center center;

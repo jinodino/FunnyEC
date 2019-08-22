@@ -2,61 +2,80 @@
 
 class CountController {
 
-    public $pv, $uu;
- 
+    public $pv, $uu, $extendsTest;
+    public function __construct() {
+        // $this->extendsTest = new CountController();
+        // $this->extendsTest->countPVUU();
+    }
 
     public function countPVUU()
     {
-        // 파일 열러
-        $file_handle  = fopen("c:/dev/Apache24/logs/access.log", "r");
-        // 피브이 카운터
-        $count = 0;
+        date_default_timezone_set('Asia/Seoul');
         // 로그 기록 날짜 폼
         $date = date("Y-m-d");
-
+        
         // 원하는 형식으로 짤라 붙여
         $dateArr = explode("-", $date);
         $dateform = $dateArr[0] . $dateArr[1] . $dateArr[2]; 
+
+        $regex = '/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/';
+        $regex2 = '/^\/funnyec\/product$|cartPageGo$|productInfo|orderPage/';
+        
         $ipArr = array();
         $ipArr2 = array();
-        $regex = '/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/';
-        $regex2 = '/funnyec/';
+
+        // 파일 열러
+        $file_handle  = fopen("/etc/httpd/logs/access_log-" . $dateform, "r");
         // 파일 열어서 포인터가 마지막인지 아닌지 확인
+
+        $index = 1;
         while (!feof($file_handle)) {
             // 한줄씩 읽어
             $line_of_text = fgets($file_handle);
-            
+            // $routeMatch = '/product|cartPageGo|productInfo|orderPage/';
+            // print $line_of_text . "\n";
             // 마지막 줄 다음 빈줄까지 읽기때문에 빈줄은 걸러줌
             if($line_of_text != "") {
-                // 로그 기록을 나눠서 관리
                 $logArr = explode(" ", $line_of_text);
-                print $line_of_text . "\n";
-                // 
-                 
-                // print "User IP : " . $logArr[0] . " Routing : " . $logArr[6];
-                // 아이피 값들을 전부 넣어줌 -> 유니크 값 파악하기 위해
-                array_push($ipArr, $logArr[0]);
-                // 라우팅 부분 -> 유유
-                if($logArr[6] == "/product") {
-                    $this->pv++;
-                    preg_match($regex, $logArr[0], $ipArr2);   
+                
+                if(preg_match($regex2, $logArr[6])) {
+                    $this->pv++; 
                 }
+                // 아이피 값들을 전부 넣어줌 -> 유니크 값 파악하기 위해
+                if(!in_array($logArr[0], $ipArr)) {
+                    if(preg_match($regex, $logArr[0])) {
+                        array_push($ipArr, $logArr[0]);   
+                    };
+                }
+                
+                // 라우팅 부분 -> 유유
+                // if($logArr[6] == "/funnyec/product" || $logArr[6] == "/funnyec/cartPageGo") {
+                //     $this->pv++;
+                // } else if(strpos($logArr[6], "/funnyec/productInfo") !== false) {
+                //     $this->pv++;   
+                // } else if(strpos($logArr[6], "/funnyec/orderPage?code='") !== false) {
+                //     $this->pv++;
+                // }
                 
                 flush();
             }
             
         }
+
         // 파일 닫아
         fclose($file_handle);
-        print_r($ipArr2);
-        return;
-        $this->uu += count(array_unique($ipArr));
+        $this->uu += count(($ipArr));
 
+        // $to = "sonjh32@naver.com";
+        // $sub = "pejfjejf";
+        // $con = "efef";
+        // $headers = "From: sonjh32@naver.com\r\n";
 
+        // mail($to, $sub, $con, $headers);
         
-        return ["pv" => $this->pv, "uu" => $this->uu];
+        return ["time" => date("Y-m-d H:i:s"), "pv" => $this->pv, "uu" => $this->uu, "arr" => $ipArr];
 
-
+        // */1 * * * * /usr/bin/php -e /var/www/html/funnyec/applicatoin/controllers/test.php
     }
 
 }

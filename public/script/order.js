@@ -267,7 +267,7 @@ function stepThree() {
     var selectButtonId  = $('.payment-container').children('.select-payment').attr("id");
     var orderCheckBox   = $('#orderCheckBox').is(':checked'); 
     
-    if(selectButton <= 0 || orderCheckBox != true) return alert("決済方法とチェックボックスを確認してください。");
+    if(selectButton <= 0 || orderCheckBox != true) return alert("決済1方法とチェックボックスを確認してください。");
 
     // 모든 정보들 들고 가야함 
     // id값도 히든에 넣어줘야함 없을 시 1로 지정 
@@ -284,6 +284,8 @@ function stepThree() {
     var code = $('.order-code-hidden').text();
     var size = $('.order-size-hidden').text();
     var qty = $('.order-qty-hidden').text();
+    console.log(code + size + qty);
+    console.log(code);
     code = code.split('-');
     size = size.split('-');
     qty = qty.split('-');
@@ -291,12 +293,12 @@ function stepThree() {
     payment = payment.trim()
     code = code.filter(Number);
     size = size.filter(Number);
-    qty = qty.filter(Number);
-
-    console.log(memo)
- 
+    qty = qty.filter(Number); 
+    console.log(code + size + qty);
+    console.log(code);
+   
     $.ajax({
-        url : '/order'
+        url : 'order'
 
         , type     : 'post'
         , datetype : 'JSON'
@@ -315,9 +317,8 @@ function stepThree() {
             qty         : qty
         }
         , success : function(res){
-            
-            alert("注文完了しました")
-            // location.replace('/product');
+            alert("注文完了しました");
+            location.replace('/funnyec/product');
             console.log(res)
         }   
         , error : function(){
@@ -332,5 +333,5 @@ function listFolder() {
 }
 
 function goInfo(id) {
-    window.location.href = "/productInfo?productCode=" + id;
+    window.location.href = "/funnyec/productInfo?productCode=" + id;
 }

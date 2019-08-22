@@ -26,7 +26,16 @@
     
     // fclose($file_handle);
     // print_r($count);     
-        
+    $date = date("Y-m-d");
+    // 0 -> 일 6 -> 토
+    // 현재 날짜가 토, 일이면 매일 안보냄 
+    // 1 -> 월 // 5 -> 금 날짜꺼 보내
+    $day  = date("w");
+
+    $timestamp = strtotime("-1 days");
+    $date = date("Y-m-d", $timestamp);
+
+    echo $day;
         
 
 ?>

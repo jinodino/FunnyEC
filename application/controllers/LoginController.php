@@ -13,9 +13,9 @@ class LoginController extends CI_Controller {
 	// test main page
 	public function gogo() {
 		
-		$count = $this->extendsTest->countPVUU();
+		// $count = $this->extendsTest->countPVUU();
 
-		print_r($count);
+		// print_r($count);
 		// $count->pv .  " : " . $count->uu;
 		$this->load->view('product/product_main');
 	}

@@ -1,14 +1,12 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+include "CountController.php";
 class ProductController extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         $this->load->library('cart');
-
+        $this->extendsTest = new CountController();
     }
-
-    
 
     // product view
     public function view() 
@@ -65,6 +63,10 @@ class ProductController extends CI_Controller {
 
     public function productInfo() 
     {
+        $count = $this->extendsTest->countPVUU();
+
+		print_r($count);
+
         $productCode = $_GET['productCode'];
         @$check = $_GET['pageCheck'];
 

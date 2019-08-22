@@ -94,14 +94,10 @@ class OrderController extends CI_Controller {
         $size        = $_POST['size'];          // 사이즈
         $qty         = $_POST['qty'];          // 수량
 
-       
         $key = $this->OrderModel->orderStart($key, $member, $email, $phone, $reName, $rePhone, $destination, $memo, $payment, $money, $code, $size, $qty);
         $this->OrderModel->orderDelail($key, $code, $size, $qty);
        
-        // input order db
-	$optionValue = "From: who <SONSATIONAL@naver.com>\r\n";
-	//mail($email, "Order Info", "order", $optionValue);
- 
+    
         // cart delete
         $this->cart->destroy();
     }

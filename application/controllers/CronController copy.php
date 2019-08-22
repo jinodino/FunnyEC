@@ -43,9 +43,9 @@ class CronController {
         // yesterday log file dateformat
         $this->date = $dateArr[0] . $dateArr[1] . $dateArr[2]; 
 
-        // $test = $this->popularItem();
-        
-        // return $test;
+        $test = $this->popularItem();
+        print_r($test);
+        return;
 
         // read yesterday log file  
         $this->loadFile();
@@ -116,42 +116,23 @@ class CronController {
 
         $title = "PHP TEST YHAHO";
 
-        $content = "<h1><center>DATA</center></h1>\n";
+        $content = "<h1><center>DATA</center></h1>";
         $content .= "<h1>Report Days : $this->pureDate \n</h1>";
         $content .= "<h1>PV : $this->pv \n UU : $this->uu \n</h1>";
         $content .= "<h1>TOTAL ORDER : $this->totalRow \n</h1>";
-        $content .= "<h1>CVR         : $this->cvr% \n\n</h1>";
-        $content .= "<h1>POPULAER ITEM RANK!\n</h1>";
-
-        $popularItem = $this->popularItem();
-
-        foreach ($popularItem as $key => $value) {
-            $index = $key + 1;
-            $name = $value['name'];
-            $content .= "<h2>$index : $name \n</h2>";
-        }
-
+        $content .= "<h1>CVR         : $this->cvr% \n</h1>";
         
-        $this->createFile($content);
-
-        $arr = $this->readLogFile();
-        $fileContent = "";
-
-        foreach ($arr as $key) {
-            $fileContent .= $key;
-        }
 
         $option = "From: sonjh32@naver.com\r\n";
         $option .= "CC: son@estore.co.jp\r\n";
         $option .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-        mail($who, $title, $fileContent, $option);
+        mail($who, $title, $content, $option);
+        $this->createFile($content);
     }
 
     public function createFile($content)
     {
         // $dir = $_SERVER['DOCUMENT_ROOT']  . "/logDir";
-        
         $dir = "/var/www/html/logDir";
 
         if( !file_exists($dir) ) {
@@ -164,42 +145,9 @@ class CronController {
         // file_put_contents($dir . "/access_log-22", $content);
     }
 
-    public function readLogFile()
-    {
-        $file_path = "/var/www/html/logDir/access_log-" . $this->date;
-        if (!file_exists($file_path)) {
-            throw new \Exception("report file not found");
-        }
-        // 파일 열러
-        $file_handle  = fopen($file_path, "r");
-        if(!$file_handle || !is_resource($file_handle)) {
-            throw new \Exception("report file cannot open.");
-        }
-        
-        // 파일 열어서 포인터가 마지막인지 아닌지 확인
-        $readContents = [];
-        while (!feof($file_handle)) {
-            // 한줄씩 읽어
-            $line_of_text = fgets($file_handle);
-            array_push($readContents, $line_of_text);
-        }
-
-        return $readContents;
-    }
-
     public function popularItem()
     {
-        $item = $this->connect->popularItem($this->pureDate);
-        
-        // $contents = "\n popularItem \n";
-
-        // foreach ($item as $key => $value) {
-        //     $index = $key + 1;
-        //     $contents .= "$index : " . $value['name'] . "\n";
-        // }
-
-        // return $contents;
-        return $item;
+        return $this->connect->popularItem($this->pureDate); 
     }
 }
 

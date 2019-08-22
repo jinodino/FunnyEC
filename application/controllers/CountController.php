@@ -10,7 +10,7 @@ class CountController {
 
     public function countPVUU()
     {
-     
+        date_default_timezone_set('Asia/Seoul');
         // 로그 기록 날짜 폼
         $date = date("Y-m-d");
         
@@ -73,7 +73,7 @@ class CountController {
 
         // mail($to, $sub, $con, $headers);
         
-        return ["pv" => $this->pv, "uu" => $this->uu, "arr" => $ipArr];
+        return ["time" => date("Y-m-d H:i:s"), "pv" => $this->pv, "uu" => $this->uu, "arr" => $ipArr];
 
         // */1 * * * * /usr/bin/php -e /var/www/html/funnyec/applicatoin/controllers/test.php
     }

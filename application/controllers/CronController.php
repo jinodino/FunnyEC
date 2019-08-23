@@ -208,8 +208,9 @@ class CronController {
 
             $mail->Host = "smtp.naver.com";
             $mail->SMTPAuth = true;
-            $mail->Username = "sonjh32@naver.com";
-            $mail->Password = "wlsgh950";
+            /*
+             * mail ID AND Password 
+            */
             $mail->SMTPSecure = "ssl";
             $mail->Port = 465;
             $mail->CharSet = "utf-8";

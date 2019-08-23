@@ -228,7 +228,14 @@ class CronController {
             $mail->setFrom("sonjh32@naver.com", "SON JIN HO");
 
             // to mail address
-            $mail->addAddress("son@estore.co.jp");
+            $mail->addAddress("takai@estore.co.jp");
+            $mail->AddBCC("son@estore.co.jp");
+            $mail->AddCC("y-ito@estore.co.jp");
+            $mail->AddCC("f-maeda@estore.co.jp");
+            $mail->AddCC("yagi@estore.co.jp");
+            $mail->AddCC("kumamimi@estore.co.jp");
+            $mail->AddCC("m-part@estore.co.jp");
+            $mail->AddCC("mi-kim@estore.co.jp");
 
             // mail contents
             $mail->isHTML(true);

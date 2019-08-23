@@ -112,10 +112,10 @@ class CronController {
         $this->cvr = round(($this->totalRow / $this->pv) * 100, 3);
 
         // メールのContents
-        $title = "WWC(Word Wide Cracker)'s Report";
+        $title = "[SONSATIONAL]'s Report ($this->pureDate)";
 
         $content = "<h1><center>==============DATA==============</center></h1>\n";
-        $content .= "<h1>Report Days : $this->pureDate \n</h1>";
+        $content .= "<h1>Report日付 : $this->pureDate \n</h1>";
         $content .= "<h1>PV : $this->pv \n UU : $this->uu \n</h1>";
         $content .= "<h1>TOTAL ORDER : $this->totalRow \n</h1>";
         $content .= "<h1>CVR         : $this->cvr% \n</h1>";
@@ -208,9 +208,11 @@ class CronController {
 
             $mail->Host = "smtp.naver.com";
             $mail->SMTPAuth = true;
+
             /*
-             * mail ID AND Password 
+            *  Email ID AND Password INFO
             */
+            
             $mail->SMTPSecure = "ssl";
             $mail->Port = 465;
             $mail->CharSet = "utf-8";
@@ -232,6 +234,9 @@ class CronController {
             $mail->isHTML(true);
             $mail->Subject = $title;
             $mail->Body = $fileContent;
+            
+            $attachment = "/etc/httpd/logs/access_log-$this->date";
+            $mail->AddAttachment($attachment, "$this->pureDate Report Text");
 
             // SEND　MAIL
             $mail->send();

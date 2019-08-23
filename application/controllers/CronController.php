@@ -55,14 +55,13 @@ class CronController {
         // read yesterday log file  
         $this->loadFile();
 
-        // send mail
-        $this->sendMail();
+        // create contents AND send mail
+        $this->createContents();
     }
 
     public function loadFile()
     {
         
-
         $regex = '/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/';
         $regex2 = '/^\/funnyec\/product$|cartPageGo$|productInfo|orderPage|order/';
 
@@ -71,19 +70,17 @@ class CronController {
         if (!file_exists($file_path)) {
             throw new \Exception("report file not found");
         }
-        // 파일 열러
+        // ファイル開く
         $file_handle  = fopen($file_path, "r");
         if(!$file_handle || !is_resource($file_handle)) {
             throw new \Exception("report file cannot open.");
         }
         
-        // 파일 열어서 포인터가 마지막인지 아닌지 확인
+        // ファイルを開いてPOINTERが最後にあるかどうか確認 
         $index = 1;
         while (!feof($file_handle)) {
-            // 한줄씩 읽어
+            // 一つ行ずつ読む
             $line_of_text = fgets($file_handle);
-            // $routeMatch = '/product|cartPageGo|productInfo|orderPage/';
-            // print $line_of_text . "\n";
             // 마지막 줄 다음 빈줄까지 읽기때문에 빈줄은 걸러줌
             if($line_of_text != "") {
                 $logArr = explode(" ", $line_of_text);
@@ -97,7 +94,6 @@ class CronController {
                         array_push($ipArr, $logArr[0]);   
                     };
                 }
-                // flush();
             }
         }
 
@@ -106,18 +102,16 @@ class CronController {
         $this->uu += count(($ipArr));
     }
 
-
-    public function sendMail()
+    // content作成
+    public function createContents()
     {
         $result = $this->connect->selectDatabase($this->pureDate);
-
+        
         $this->totalRow = mysqli_num_rows($result);
+        // CVRの値
         $this->cvr = round(($this->totalRow / $this->pv) * 100, 3);
 
-        
-
-        $who = "sonjh32@naver.com";
-
+        // メールのContents
         $title = "WWC(Word Wide Cracker)'s Report";
 
         $content = "<h1><center>==============DATA==============</center></h1>\n";
@@ -127,8 +121,7 @@ class CronController {
         $content .= "<h1>CVR         : $this->cvr% \n</h1>";
         $content .= "<h1><center>\n=======POPULAER ITEM RANK!=======\n</center></h1>";
 
-        
-
+        // 人気ITEM　Contents 追加
         $popularItem = $this->popularItem();
 
         foreach ($popularItem as $key => $value) {
@@ -140,6 +133,7 @@ class CronController {
         // create File 
         $this->createFile($content);
 
+        // ファイルを読む
         $arr = $this->readLogFile();
         $fileContent = "";
 
@@ -147,27 +141,29 @@ class CronController {
             $fileContent .= $key;
         }
 
+        // メール発送
         $this->mailsetting($title, $fileContent);
-
-        
     }
 
+    // ファイル生成
     public function createFile($content)
     {
-        // $dir = $_SERVER['DOCUMENT_ROOT']  . "/logDir";
-        
+        // フォルダ path        
         $dir = "/var/www/html/logDir";
 
+        // フォルダ存在確認
+        // ない場合　→　フォルダ生成
         if( !file_exists($dir) ) {
             $old= umask(0);
             mkdir($dir, 0777);
             umask($old);
         }
         
+        // ファイル生成
         file_put_contents($dir . "/access_log-" . $this->date, $content);
-        // file_put_contents($dir . "/access_log-22", $content);
     }
 
+    // ファイルの内容を抽出
     public function readLogFile()
     {
         $file_path = "/var/www/html/logDir/access_log-" . $this->date;
@@ -192,21 +188,15 @@ class CronController {
         return $readContents;
     }
 
+    // 人気あるITEM抽出
     public function popularItem()
     {
         $item = $this->connect->popularItem($this->pureDate);
         
-        // $contents = "\n popularItem \n";
-
-        // foreach ($item as $key => $value) {
-        //     $index = $key + 1;
-        //     $contents .= "$index : " . $value['name'] . "\n";
-        // }
-
-        // return $contents;
         return $item;
     }
 
+    // メール設定及び発送
     public function mailsetting($title, $fileContent)
     {
         $mail = new PHPMailer(true);
@@ -242,6 +232,7 @@ class CronController {
             $mail->Subject = $title;
             $mail->Body = $fileContent;
 
+            // SEND　MAIL
             $mail->send();
 
             echo "Message has been sent";

@@ -1,6 +1,11 @@
 #!/usr/bin/php
 <?php 
+include "/var/www/html/funnyec/application/controllers/mailer/src/PHPMailer.php";
+include "/var/www/html/funnyec/application/controllers/mailer/src/SMTP.php";
+include "/var/www/html/funnyec/application/controllers/mailer/src/Exception.php";
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 include "/var/www/html/funnyec/application/models/DB.php";
 
 class CronController {
@@ -45,7 +50,7 @@ class CronController {
 
         // $test = $this->popularItem();
         
-        // return $test;
+        
 
         // read yesterday log file  
         $this->loadFile();
@@ -106,22 +111,23 @@ class CronController {
     {
         $result = $this->connect->selectDatabase($this->pureDate);
 
-        while ($info = mysqli_fetch_array($result)) {
-            // $content .= $info["order_id"];
-        }
         $this->totalRow = mysqli_num_rows($result);
         $this->cvr = round(($this->totalRow / $this->pv) * 100, 3);
 
+        
+
         $who = "sonjh32@naver.com";
 
-        $title = "PHP TEST YHAHO";
+        $title = "WWC(Word Wide Cracker)'s Report";
 
-        $content = "<h1><center>DATA</center></h1>\n";
+        $content = "<h1><center>==============DATA==============</center></h1>\n";
         $content .= "<h1>Report Days : $this->pureDate \n</h1>";
         $content .= "<h1>PV : $this->pv \n UU : $this->uu \n</h1>";
         $content .= "<h1>TOTAL ORDER : $this->totalRow \n</h1>";
-        $content .= "<h1>CVR         : $this->cvr% \n\n</h1>";
-        $content .= "<h1>POPULAER ITEM RANK!\n</h1>";
+        $content .= "<h1>CVR         : $this->cvr% \n</h1>";
+        $content .= "<h1><center>\n=======POPULAER ITEM RANK!=======\n</center></h1>";
+
+        
 
         $popularItem = $this->popularItem();
 
@@ -130,8 +136,8 @@ class CronController {
             $name = $value['name'];
             $content .= "<h2>$index : $name \n</h2>";
         }
-
         
+        // create File 
         $this->createFile($content);
 
         $arr = $this->readLogFile();
@@ -141,11 +147,9 @@ class CronController {
             $fileContent .= $key;
         }
 
-        $option = "From: sonjh32@naver.com\r\n";
-        $option .= "CC: son@estore.co.jp\r\n";
-        $option .= "Content-Type: text/html; charset=UTF-8\r\n";
+        $this->mailsetting($title, $fileContent);
 
-        mail($who, $title, $fileContent, $option);
+        
     }
 
     public function createFile($content)
@@ -183,6 +187,7 @@ class CronController {
             $line_of_text = fgets($file_handle);
             array_push($readContents, $line_of_text);
         }
+        fclose($file_handle);
 
         return $readContents;
     }
@@ -200,6 +205,43 @@ class CronController {
 
         // return $contents;
         return $item;
+    }
+
+    public function mailsetting($title, $fileContent)
+    {
+        $mail = new PHPMailer(true);
+
+        try {
+            // servet setting
+            $mail->SMTPDebug = 2;
+            $mail->isSMTP();
+
+            $mail->Host = "smtp.naver.com";
+            $mail->SMTPAuth = true;
+            $mail->Username = "sonjh32@naver.com";
+            $mail->Password = "wlsgh950";
+            $mail->SMTPSecure = "ssl";
+            $mail->Port = 465;
+            $mail->CharSet = "utf-8";
+
+            // send mail address
+            $mail->setFrom("sonjh32@naver.com", "SON JIN HO");
+
+            // to mail address
+            $mail->addAddress("son@estore.co.jp");
+
+            // mail contents
+            $mail->isHTML(true);
+            $mail->Subject = $title;
+            $mail->Body = $fileContent;
+
+            $mail->send();
+
+            echo "Message has been sent";
+
+        } catch (Exception $e) {
+            echo "mee";
+        }
     }
 }
 

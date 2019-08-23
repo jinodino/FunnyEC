@@ -1,5 +1,11 @@
 #!/usr/bin/php
 <?php 
+include "/var/www/html/funnyec/application/controllers/mailer/src/PHPMailer.php";
+include "/var/www/html/funnyec/application/controllers/mailer/src/SMTP.php";
+include "/var/www/html/funnyec/application/controllers/mailer/src/Exception.php";
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 include "/var/www/html/funnyec/application/models/DB.php";
 
@@ -44,8 +50,6 @@ class CronController {
         $this->date = $dateArr[0] . $dateArr[1] . $dateArr[2]; 
 
         $test = $this->popularItem();
-        print_r($test);
-        return;
 
         // read yesterday log file  
         $this->loadFile();
@@ -106,28 +110,55 @@ class CronController {
     {
         $result = $this->connect->selectDatabase($this->pureDate);
 
-        while ($info = mysqli_fetch_array($result)) {
-            // $content .= $info["order_id"];
-        }
         $this->totalRow = mysqli_num_rows($result);
         $this->cvr = round(($this->totalRow / $this->pv) * 100, 3);
 
-        $who = "sonjh32@naver.com";
+        $mail = new PHPMailer(true);
 
-        $title = "PHP TEST YHAHO";
+        $mail->SMTPDebug =2;
+        $mail->isSMTP();
 
-        $content = "<h1><center>DATA</center></h1>";
-        $content .= "<h1>Report Days : $this->pureDate \n</h1>";
-        $content .= "<h1>PV : $this->pv \n UU : $this->uu \n</h1>";
-        $content .= "<h1>TOTAL ORDER : $this->totalRow \n</h1>";
-        $content .= "<h1>CVR         : $this->cvr% \n</h1>";
+        $mail->HOST = "smtp.gmail.com";
+        $mail->SMTPAuth = true;
+        $mail->Username = "son@estore.co.jp";
+        $mail->Password = 'wlsgh950"';
+        $mail->SMTPSecure = "ssl";
+        $mail->Port = 587;
+
+        $mail->CharSet = "utf-8";
+        $mail->setFrom("son@estore.co.jp");
+        $mail->addAddress("son@estore.co.jp");
+
+        $mail->isHTML(true);
+        $mail->Subject ="22";
+        $mail->Body = "aefef";
+
+        $mail->SMTPOptions = array(
+            "ssl" => array (
+                "verify_peer" => false,
+                "verify_peer_name" => false,
+                "allow_self_signed" => true
+            )
+        );
+
+        $mail->send();
+        return;
+        // $who = "sonjh32@naver.com";
+
+        // $title = "PHP TEST YHAHO";
+
+        // $content = "<h1><center>DATA</center></h1>";
+        // $content .= "<h1>Report Days : $this->pureDate \n</h1>";
+        // $content .= "<h1>PV : $this->pv \n UU : $this->uu \n</h1>";
+        // $content .= "<h1>TOTAL ORDER : $this->totalRow \n</h1>";
+        // $content .= "<h1>CVR         : $this->cvr% \n</h1>";
         
 
-        $option = "From: sonjh32@naver.com\r\n";
-        $option .= "CC: son@estore.co.jp\r\n";
-        $option .= "Content-Type: text/html; charset=UTF-8\r\n";
-        mail($who, $title, $content, $option);
-        $this->createFile($content);
+        // $option = "From: sonjh32@naver.com\r\n";
+        // $option .= "CC: son@estore.co.jp\r\n";
+        // $option .= "Content-Type: text/html; charset=UTF-8\r\n";
+        // mail($who, $title, $content, $option);
+        // $this->createFile($content);
     }
 
     public function createFile($content)

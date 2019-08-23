@@ -120,8 +120,7 @@ class CronController {
 
         $mail->HOST = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "son@estore.co.jp";
-        $mail->Password = 'wlsgh950"';
+
         $mail->SMTPSecure = "ssl";
         $mail->Port = 587;
 

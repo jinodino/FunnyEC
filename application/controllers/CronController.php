@@ -212,6 +212,7 @@ class CronController {
             /*
             *  Email ID AND Password INFO
             */
+         
             
             $mail->SMTPSecure = "ssl";
             $mail->Port = 465;

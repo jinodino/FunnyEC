@@ -47,16 +47,7 @@ class CountController {
                         array_push($ipArr, $logArr[0]);   
                     };
                 }
-                
-                // 라우팅 부분 -> 유유
-                // if($logArr[6] == "/funnyec/product" || $logArr[6] == "/funnyec/cartPageGo") {
-                //     $this->pv++;
-                // } else if(strpos($logArr[6], "/funnyec/productInfo") !== false) {
-                //     $this->pv++;   
-                // } else if(strpos($logArr[6], "/funnyec/orderPage?code='") !== false) {
-                //     $this->pv++;
-                // }
-                
+             
                 flush();
             }
             
@@ -66,16 +57,10 @@ class CountController {
         fclose($file_handle);
         $this->uu += count(($ipArr));
 
-        // $to = "sonjh32@naver.com";
-        // $sub = "pejfjejf";
-        // $con = "efef";
-        // $headers = "From: sonjh32@naver.com\r\n";
-
-        // mail($to, $sub, $con, $headers);
+    
         
         return ["time" => date("Y-m-d H:i:s"), "pv" => $this->pv, "uu" => $this->uu, "arr" => $ipArr];
 
-        // */1 * * * * /usr/bin/php -e /var/www/html/funnyec/applicatoin/controllers/test.php
     }
 
 }

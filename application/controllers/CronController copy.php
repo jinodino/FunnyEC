@@ -125,8 +125,6 @@ class CronController {
         $mail->Port = 587;
 
         $mail->CharSet = "utf-8";
-        $mail->setFrom("son@estore.co.jp");
-        $mail->addAddress("son@estore.co.jp");
 
         $mail->isHTML(true);
         $mail->Subject ="22";

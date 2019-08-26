@@ -212,8 +212,7 @@ class CronController {
             /*
             *  Email ID AND Password INFO
             */
-            $mail->Username = "sonjh32@naver.com";
-            $mail->Password = "wlsgh950";
+      
             
             $mail->SMTPSecure = "ssl";
             $mail->Port = 465;
@@ -223,8 +222,7 @@ class CronController {
             $mail->setFrom("sonjh32@naver.com", "SON JIN HO");
 
             // to mail address
-            
-
+           
             // mail contents
             $mail->isHTML(true);
             $mail->Subject = $title;
